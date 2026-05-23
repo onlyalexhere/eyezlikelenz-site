@@ -47,14 +47,20 @@
     <h2 class="section-title display">Eyez like a <span class="italic">lens.</span></h2>
   </div>
   <div class="about-grid">
-    <div class="about-image reveal"></div>
+    <div class="about-carousel reveal">
+      <div class="carousel-track"></div>
+      <button class="carousel-btn carousel-prev" aria-label="Previous">&#8592;</button>
+      <button class="carousel-btn carousel-next" aria-label="Next">&#8594;</button>
+      <div class="carousel-dots"></div>
+      <div class="carousel-caption">"the eyes see what the lens remembers"</div>
+    </div>
     <div class="about-text reveal">
       <p class="lead">"Your favourite photographer's favourite photographer. I shoot the night, the vows, the brand, the face. Same eye, every time."</p>
       <p>EyezLikeLenz is the photography practice of Alex Oyekola, based in London and working across the UK. The work spans weddings, parties, fashion editorial, and brand campaigns, with a consistent attention to atmosphere, light, and feeling.</p>
       <p>Clients come for the look. They come back for the turnaround and the way it feels on the night. Every shoot is approached as its own story, never a template.</p>
       <div class="stats">
         <div>
-          <div class="stat-number display">200+</div>
+          <div class="stat-number display">50+</div>
           <div class="stat-label">Shoots delivered</div>
         </div>
         <div>
@@ -157,7 +163,7 @@
         <li>Personal and limited commercial use</li>
         <li>Pre shoot consultation</li>
       </ul>
-      <a href="#contact" class="btn btn-primary">Book Now</a>
+      <a href="#contact" class="btn">Enquire</a>
     </div>
     <div class="price-card reveal">
       <div class="price-tier">Commission</div>
@@ -184,7 +190,33 @@
     <h2 class="section-title display">How to <span class="italic">pay.</span></h2>
   </div>
   <div class="payment-wrap reveal">
-    <p class="payment-intro">Bookings are confirmed once the 10% deposit is received. The remaining balance is due in full before the shoot date.</p>
+    <p class="payment-intro">Bookings are confirmed once the 10% deposit is received. The remaining balance is due in full at least 72 hours before the shoot date.</p>
+
+    <div class="stripe-options">
+      <div class="stripe-heading">Pay by card</div>
+      <div class="stripe-cards">
+        <a href="https://buy.stripe.com/9B628t97K1EiemS4XgeIw00" target="_blank" rel="noopener" class="stripe-card">
+          <div class="stripe-tier">Essentials</div>
+          <div class="stripe-name">Half Session</div>
+          <div class="stripe-price">£110 <span>/ 2 hours</span></div>
+          <div class="stripe-cta">Pay now ↗</div>
+        </a>
+        <a href="https://buy.stripe.com/dRmcN76ZC82G0w2dtMeIw01" target="_blank" rel="noopener" class="stripe-card stripe-card-featured">
+          <div class="stripe-tier">Signature</div>
+          <div class="stripe-name">Full Session</div>
+          <div class="stripe-price">£215 <span>/ 4 hours</span></div>
+          <div class="stripe-cta">Pay now ↗</div>
+        </a>
+        <a href="https://buy.stripe.com/bJebJ397K0Ae5QmcpIeIw02" target="_blank" rel="noopener" class="stripe-card">
+          <div class="stripe-tier">Commission</div>
+          <div class="stripe-name">Full Day</div>
+          <div class="stripe-price">£525 <span>/ 8 hours</span></div>
+          <div class="stripe-cta">Pay now ↗</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="payment-divider"><span>or pay by bank transfer</span></div>
 
     <div id="payment-locked" class="payment-locked">
       <div class="lock-icon">✦</div>
@@ -235,7 +267,7 @@
   <div class="terms-wrap">
     <div class="terms-section reveal">
       <h3><span class="num">01.</span> Booking &amp; Deposit</h3>
-      <p>All bookings require a 10% non refundable deposit to secure the date. The booking is only confirmed once the deposit is received in cleared funds. The remaining balance must be paid in full before the shoot date.</p>
+      <p>All bookings require a 10% non refundable deposit to secure the date. The booking is only confirmed once the deposit is received in cleared funds. The remaining balance must be paid in full at least 72 hours before the shoot date.</p>
     </div>
     <div class="terms-section reveal">
       <h3><span class="num">02.</span> Cancellation by the Client</h3>
@@ -301,7 +333,17 @@
     <div class="contact-text reveal">
       <div class="section-number">06 / Contact</div>
       <h2 class="display">Let's make<br>something <span class="italic">loud.</span></h2>
-      <p>Drop a line with the date, the brief, and the vibe. I reply to every enquiry within two working days. For urgent bookings, DM on Instagram is fastest.</p>
+      <p>Send an email or DM on Instagram with the date, the brief, and the vibe. I reply to every enquiry within two working days.</p>
+      <div class="contact-icons">
+        <a href="mailto:alexanderoyekola@gmail.com" class="contact-icon-link" aria-label="Send an email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          <span>Email</span>
+        </a>
+        <a href="https://instagram.com/eyezlikelenz" target="_blank" rel="noopener" class="contact-icon-link" aria-label="DM on Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          <span>Instagram</span>
+        </a>
+      </div>
     </div>
     <ul class="contact-details reveal">
       <li>
@@ -335,6 +377,8 @@
 
 <script src="js/payment-unlock.js"></script>
 <script src="js/reveal.js"></script>
+<script src="js/carousel-config.js"></script>
+<script src="js/carousel.js"></script>
 
 </body>
 </html>

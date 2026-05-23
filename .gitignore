@@ -20,3 +20,9 @@ yarn.lock
 
 # Drafts
 /drafts/
+
+# Images (managed outside the repo)
+/images/
+
+# Images (managed outside the repo)
+/images/
