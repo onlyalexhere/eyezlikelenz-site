@@ -24,5 +24,6 @@ yarn.lock
 # Images (managed outside the repo)
 /images/
 
-# Images (managed outside the repo)
-/images/
+# Logo source files + background-removal venv (not needed for the site)
+/attachments/
+.bgvenv/

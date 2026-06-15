@@ -3,30 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EyezLikeLenz — Alex Oyekola Photography</title>
-  <meta name="description" content="Photography by Alex Oyekola. Weddings, events, portraits and brand work. Based in London, available across the UK.">
+  <title>EyezLikeLenz — Photography</title>
+  <meta name="description" content="EyezLikeLenz photography. Weddings, events, portraits and brand work. Based in London, available across the UK.">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('ell-theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" type="image/png" href="/assets/logo-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="/assets/logo-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="/assets/logo-dark.png">
 </head>
 <body>
 
 <nav>
-  <div class="logo">EyezLikeLenz<span>.</span></div>
+  <a href="/" class="logo">
+    <img src="/assets/logo-dark.png" alt="EyezLikeLenz" class="logo-img" id="logo-img">
+    <span class="logo-text">EyezLikeLenz<span class="logo-dot">.</span></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="/portfolio/">Portfolio</a></li>
     <li><a href="#payment">Payment</a></li>
-    <li><a href="#terms">Terms</a></li>
+    <li><a href="/terms/">Terms</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light and dark mode">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
 </nav>
 
 <header class="hero">
   <div class="hero-text reveal">
-    <div class="eyebrow">Alex Oyekola · London</div>
+    <div class="eyebrow">EyezLikeLenz · London</div>
     <h1 class="display">I shoot<br>the <span class="accent">moment</span><br>you forget.</h1>
     <p class="hero-sub">Weddings, events, portraits, brands. Documented properly. Edited with intention. Delivered fast.</p>
     <div class="cta-group">
@@ -46,17 +66,10 @@
     <div class="section-number">01 / About</div>
     <h2 class="section-title display">Eyez like a <span class="italic">lens.</span></h2>
   </div>
-  <div class="about-grid">
-    <div class="about-carousel reveal">
-      <div class="carousel-track"></div>
-      <button class="carousel-btn carousel-prev" aria-label="Previous">&#8592;</button>
-      <button class="carousel-btn carousel-next" aria-label="Next">&#8594;</button>
-      <div class="carousel-dots"></div>
-      <div class="carousel-caption">"the eyes see what the lens remembers"</div>
-    </div>
+  <div class="about-grid about-grid-single">
     <div class="about-text reveal">
       <p class="lead">"Your favourite photographer's favourite photographer. I shoot the night, the vows, the brand, the face. Same eye, every time."</p>
-      <p>EyezLikeLenz is the photography practice of Alex Oyekola, based in London and working across the UK. The work spans weddings, parties, fashion editorial, and brand campaigns, with a consistent attention to atmosphere, light, and feeling.</p>
+      <p>EyezLikeLenz is a photography practice based in London and working across the UK. The work spans weddings, parties, fashion editorial, and brand campaigns, with a consistent attention to atmosphere, light, and feeling.</p>
       <p>Clients come for the look. They come back for the turnaround and the way it feels on the night. Every shoot is approached as its own story, never a template.</p>
       <div class="stats">
         <div>
@@ -190,7 +203,8 @@
     <h2 class="section-title display">How to <span class="italic">pay.</span></h2>
   </div>
   <div class="payment-wrap reveal">
-    <p class="payment-intro">Bookings are confirmed once the 10% deposit is received. The remaining balance is due in full at least 72 hours before the shoot date.</p>
+    <p class="payment-intro">Bookings are confirmed once payment is received.</p>
+    <p class="payment-sidenote">A confirmation will be sent again at least 72 hours before the shoot date.</p>
 
     <div class="stripe-options">
       <div class="stripe-heading">Pay by card</div>
@@ -259,79 +273,10 @@
   </div>
 </section>
 
-<section id="terms">
-  <div class="section-header">
-    <div class="section-number">05 / Terms</div>
-    <h2 class="section-title display">Terms &amp; <span class="italic">conditions.</span></h2>
-  </div>
-  <div class="terms-wrap">
-    <div class="terms-section reveal">
-      <h3><span class="num">01.</span> Booking &amp; Deposit</h3>
-      <p>All bookings require a 10% non refundable deposit to secure the date. The booking is only confirmed once the deposit is received in cleared funds. The remaining balance must be paid in full at least 72 hours before the shoot date.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">02.</span> Cancellation by the Client</h3>
-      <p>Cancellations made outside the circumstances set out in section 04 (Force Majeure &amp; Exceptional Circumstances) forfeit the 10% deposit only. Any remaining balance already paid will be refunded within 7 working days.</p>
-      <p>One free reschedule is permitted if requested at least 7 days in advance, subject to availability. Subsequent reschedules incur a 10% admin fee.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">03.</span> Cancellation by the Photographer</h3>
-      <p>In the unlikely event that the photographer must cancel the booking for any reason (including illness, injury, equipment failure, or other personal circumstances), the client will receive a full 100% refund of all fees paid within 7 working days. Where reasonably possible, the photographer will also assist in finding a suitable replacement photographer of similar standard, though this is not guaranteed.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">04.</span> Force Majeure &amp; Exceptional Circumstances</h3>
-      <p>Either party may cancel the booking without penalty in the event of circumstances beyond reasonable control, including but not limited to:</p>
-      <ul>
-        <li>Death or serious illness affecting the client, the photographer, or their immediate family.</li>
-        <li>Serious accident or hospitalisation.</li>
-        <li>Bereavement requiring the client or photographer's attendance at a funeral.</li>
-        <li>Government imposed restrictions, public health emergencies, or lockdowns.</li>
-        <li>Natural disasters, extreme weather, or events that make the shoot location unsafe or inaccessible.</li>
-        <li>Acts of terrorism, civil unrest, or war.</li>
-      </ul>
-      <p>In any of the above cases, where the client cancels, a full refund will be issued less any non recoverable third party costs already incurred (such as venue deposits, equipment hire, or assistant fees), with evidence provided. Where the photographer cancels, a full 100% refund is issued. Both parties agree to give written notice and supporting documentation as soon as reasonably possible.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">05.</span> Delivery</h3>
-      <p>Delivery is split into two parts so clients receive both volume and polish:</p>
-      <ul>
-        <li><strong class="emphasis">Full gallery:</strong> all keeper images from the shoot, lightly culled to remove duplicates, test frames, and unusable shots. Delivered as high resolution files with basic colour correction applied. No heavy retouching.</li>
-        <li><strong class="emphasis">Edited selects:</strong> the number of fully edited high resolution images included in the chosen package (20, 50, or 100+), hand picked and retouched to a finished standard.</li>
-      </ul>
-      <p>Both are delivered through a private online gallery within 14 working days of the shoot (28 days for full day and wedding commissions). RAW files are not supplied.</p>
-      <p>Additional edits beyond what is included can be ordered at any time at £8 per image, or £150 for a batch of 25. Clients select the images they want edited from the full gallery.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">06.</span> Usage &amp; Licensing</h3>
-      <p>Unless otherwise agreed in writing, the client receives a personal use license for portrait, wedding, and event work. Commercial use, resale, and third party licensing require a separate written agreement and may incur additional fees. The photographer retains copyright of all images at all times.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">07.</span> Portfolio &amp; Promotion</h3>
-      <p>The photographer reserves the right to use any image from a shoot for portfolio, website, and social media purposes unless a written request to opt out is made before the shoot date. Clients may request specific images to be excluded.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">08.</span> Travel &amp; Expenses</h3>
-      <p>Travel within Greater London is included. Beyond this, mileage at 45p per mile, public transport, parking, and reasonable accommodation where required will be invoiced at cost.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">09.</span> Liability</h3>
-      <p>The photographer's total liability under any booking is limited to the total fees paid by the client. No further compensation is offered for consequential loss, third party expenses, or indirect damages.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">10.</span> Image Storage</h3>
-      <p>Edited galleries remain online for 90 days. Clients are responsible for downloading and backing up their images within this window. Archive recovery after 90 days is available at a fee of £50.</p>
-    </div>
-    <div class="terms-section reveal">
-      <h3><span class="num">11.</span> Acceptance</h3>
-      <p>Payment of the deposit constitutes acceptance of these terms in full. Any variations must be agreed in writing.</p>
-    </div>
-  </div>
-</section>
-
 <section id="contact">
   <div class="contact-grid">
     <div class="contact-text reveal">
-      <div class="section-number">06 / Contact</div>
+      <div class="section-number">05 / Contact</div>
       <h2 class="display">Let's make<br>something <span class="italic">loud.</span></h2>
       <p>Send an email or DM on Instagram with the date, the brief, and the vibe. I reply to every enquiry within two working days.</p>
       <div class="contact-icons">
@@ -372,13 +317,12 @@
 
 <footer>
   <div class="display">EyezLikeLenz</div>
-  <div>© 2026 Alexander Oyekola. All rights reserved. Photography &amp; image rights retained by the photographer.</div>
+  <div>© 2026 EyezLikeLenz. All rights reserved. Photography &amp; image rights retained by the photographer.</div>
 </footer>
 
-<script src="js/payment-unlock.js"></script>
-<script src="js/reveal.js"></script>
-<script src="js/carousel-config.js"></script>
-<script src="js/carousel.js"></script>
+<script src="/js/theme.js"></script>
+<script src="/js/payment-unlock.js"></script>
+<script src="/js/reveal.js"></script>
 
 </body>
 </html>
