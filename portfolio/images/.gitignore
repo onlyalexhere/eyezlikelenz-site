@@ -1,0 +1,5 @@
+# Original full-resolution photos are kept locally but NOT committed (too large for web).
+# Only the optimized thumbs/ and large/ sets are deployed.
+/*.JPG
+/*.jpg
+.DS_Store
