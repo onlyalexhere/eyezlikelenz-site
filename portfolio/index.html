@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EyezLikeLenz — Portfolio</title>
+  <meta name="description" content="Selected photography work by EyezLikeLenz. Weddings, events, portraits and brand work across the UK.">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('ell-theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" type="image/png" href="/assets/logo-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="/assets/logo-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="/assets/logo-dark.png">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <img src="/assets/logo-dark.png" alt="EyezLikeLenz" class="logo-img" id="logo-img">
+    <span class="logo-text">EyezLikeLenz<span class="logo-dot">.</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#pricing">Pricing</a></li>
+    <li><a href="/portfolio/" class="active">Portfolio</a></li>
+    <li><a href="/#payment">Payment</a></li>
+    <li><a href="/terms/">Terms</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light and dark mode">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</nav>
+
+<section id="portfolio">
+  <div class="section-header">
+    <div class="section-number">Portfolio</div>
+    <h2 class="section-title display">Selected <span class="italic">work.</span></h2>
+  </div>
+
+  <div id="portfolio-grid" class="portfolio-grid"></div>
+
+  <p id="portfolio-empty" class="portfolio-empty" style="display:none;">
+    Portfolio images are on their way. Check back soon, or
+    <a href="/#contact">get in touch</a> to see recent work.
+  </p>
+</section>
+
+<!-- Full-screen lightbox -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" aria-label="Previous">&#8592;</button>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="">
+  <button class="lightbox-next" aria-label="Next">&#8594;</button>
+</div>
+
+<footer>
+  <div class="display">EyezLikeLenz</div>
+  <div>© 2026 EyezLikeLenz. All rights reserved. Photography &amp; image rights retained by the photographer.</div>
+</footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/reveal.js"></script>
+<script src="/js/portfolio-config.js"></script>
+<script src="/js/portfolio.js"></script>
+
+</body>
+</html>
