@@ -10,6 +10,10 @@
     return;
   }
 
+  // Normalize entries: support plain strings or { thumb, full } objects.
+  function thumbOf(item) { return (typeof item === 'string') ? item : item.thumb; }
+  function fullOf(item) { return (typeof item === 'string') ? item : (item.full || item.thumb); }
+
   // Lightbox elements
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
@@ -17,7 +21,16 @@
 
   function open(index) {
     current = (index + images.length) % images.length;
-    lightboxImg.src = images[current];
+    // Fade the image out, swap source, fade back in once loaded for a smooth transition.
+    lightboxImg.classList.remove('loaded');
+    var src = fullOf(images[current]);
+    var pre = new Image();
+    pre.onload = function () {
+      lightboxImg.src = src;
+      // Next frame so the browser registers the change before fading in.
+      requestAnimationFrame(function () { lightboxImg.classList.add('loaded'); });
+    };
+    pre.src = src;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -29,7 +42,7 @@
 
   function next(dir) { open(current + dir); }
 
-  images.forEach(function (src, i) {
+  images.forEach(function (item, i) {
     var fig = document.createElement('button');
     fig.className = 'portfolio-item';
     fig.setAttribute('aria-label', 'View image ' + (i + 1));
@@ -37,7 +50,8 @@
     var img = document.createElement('img');
     img.loading = 'lazy';
     img.alt = '';
-    img.src = src;
+    img.src = thumbOf(item);
+    img.onload = function () { fig.classList.add('loaded'); };
     img.onerror = function () { fig.style.display = 'none'; };
 
     fig.appendChild(img);

@@ -1,18 +1,62 @@
 /* ==========================================================================
-   Portfolio images
-   --------------------------------------------------------------------------
-   Add your photos to the  /images/portfolio/  folder, then list each
-   filename below exactly as it appears (case sensitive, include the
-   extension). They display in the order listed.
-
-   Example:
-     var PORTFOLIO_IMAGES = [
-       '/images/portfolio/wedding-01.jpg',
-       '/images/portfolio/event-03.jpg',
-       '/images/portfolio/portrait-07.jpg'
-     ];
+   Portfolio images — AUTO-GENERATED
+   Optimized web versions live in /portfolio/images/{thumbs,large}/
+   To regenerate after adding photos, re-run the sips build step.
    ========================================================================== */
 var PORTFOLIO_IMAGES = [
-  // '/images/portfolio/your-photo-1.jpg',
-  // '/images/portfolio/your-photo-2.jpg'
+  { thumb: '/portfolio/images/thumbs/photo-01.jpg', full: '/portfolio/images/large/photo-01.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-02.jpg', full: '/portfolio/images/large/photo-02.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-03.jpg', full: '/portfolio/images/large/photo-03.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-04.jpg', full: '/portfolio/images/large/photo-04.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-05.jpg', full: '/portfolio/images/large/photo-05.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-06.jpg', full: '/portfolio/images/large/photo-06.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-07.jpg', full: '/portfolio/images/large/photo-07.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-08.jpg', full: '/portfolio/images/large/photo-08.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-09.jpg', full: '/portfolio/images/large/photo-09.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-10.jpg', full: '/portfolio/images/large/photo-10.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-11.jpg', full: '/portfolio/images/large/photo-11.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-12.jpg', full: '/portfolio/images/large/photo-12.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-13.jpg', full: '/portfolio/images/large/photo-13.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-14.jpg', full: '/portfolio/images/large/photo-14.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-15.jpg', full: '/portfolio/images/large/photo-15.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-16.jpg', full: '/portfolio/images/large/photo-16.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-17.jpg', full: '/portfolio/images/large/photo-17.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-18.jpg', full: '/portfolio/images/large/photo-18.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-19.jpg', full: '/portfolio/images/large/photo-19.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-20.jpg', full: '/portfolio/images/large/photo-20.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-21.jpg', full: '/portfolio/images/large/photo-21.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-22.jpg', full: '/portfolio/images/large/photo-22.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-23.jpg', full: '/portfolio/images/large/photo-23.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-24.jpg', full: '/portfolio/images/large/photo-24.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-25.jpg', full: '/portfolio/images/large/photo-25.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-26.jpg', full: '/portfolio/images/large/photo-26.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-27.jpg', full: '/portfolio/images/large/photo-27.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-28.jpg', full: '/portfolio/images/large/photo-28.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-29.jpg', full: '/portfolio/images/large/photo-29.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-30.jpg', full: '/portfolio/images/large/photo-30.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-31.jpg', full: '/portfolio/images/large/photo-31.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-32.jpg', full: '/portfolio/images/large/photo-32.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-33.jpg', full: '/portfolio/images/large/photo-33.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-34.jpg', full: '/portfolio/images/large/photo-34.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-35.jpg', full: '/portfolio/images/large/photo-35.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-36.jpg', full: '/portfolio/images/large/photo-36.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-37.jpg', full: '/portfolio/images/large/photo-37.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-38.jpg', full: '/portfolio/images/large/photo-38.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-39.jpg', full: '/portfolio/images/large/photo-39.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-40.jpg', full: '/portfolio/images/large/photo-40.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-41.jpg', full: '/portfolio/images/large/photo-41.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-42.jpg', full: '/portfolio/images/large/photo-42.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-43.jpg', full: '/portfolio/images/large/photo-43.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-44.jpg', full: '/portfolio/images/large/photo-44.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-45.jpg', full: '/portfolio/images/large/photo-45.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-46.jpg', full: '/portfolio/images/large/photo-46.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-47.jpg', full: '/portfolio/images/large/photo-47.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-48.jpg', full: '/portfolio/images/large/photo-48.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-49.jpg', full: '/portfolio/images/large/photo-49.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-50.jpg', full: '/portfolio/images/large/photo-50.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-51.jpg', full: '/portfolio/images/large/photo-51.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-52.jpg', full: '/portfolio/images/large/photo-52.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-53.jpg', full: '/portfolio/images/large/photo-53.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-54.jpg', full: '/portfolio/images/large/photo-54.jpg' },
+  { thumb: '/portfolio/images/thumbs/photo-55.jpg', full: '/portfolio/images/large/photo-55.jpg' }
 ];
