@@ -6,7 +6,7 @@
   function apply(theme) {
     root.setAttribute('data-theme', theme);
     if (logo) {
-      logo.src = theme === 'light' ? 'assets/logo-light.png' : 'assets/logo-dark.png';
+      logo.src = theme === 'light' ? '/assets/logo-light.png' : '/assets/logo-dark.png';
     }
   }
 
