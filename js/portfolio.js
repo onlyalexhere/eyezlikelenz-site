@@ -24,6 +24,7 @@
     // Fade the image out, swap source, fade back in once loaded for a smooth transition.
     lightboxImg.classList.remove('loaded');
     var src = fullOf(images[current]);
+    lightboxImg.alt = 'EyezLikeLenz portfolio photograph ' + (current + 1) + ' of ' + images.length;
     var pre = new Image();
     pre.onload = function () {
       lightboxImg.src = src;
@@ -49,7 +50,7 @@
 
     var img = document.createElement('img');
     img.loading = 'lazy';
-    img.alt = '';
+    img.alt = 'EyezLikeLenz portfolio photograph ' + (i + 1) + ' of ' + images.length;
     img.src = thumbOf(item);
     img.onload = function () { fig.classList.add('loaded'); };
     img.onerror = function () { fig.style.display = 'none'; };

@@ -10,10 +10,13 @@ desktop.ini
 *.swo
 *~
 
-# Node (if you ever add a build step)
+# Node (test tooling only — the deployed site has no build step)
 node_modules/
-package-lock.json
 yarn.lock
+
+# Test output
+/test-results/
+/playwright-report/
 
 # Local server logs
 *.log

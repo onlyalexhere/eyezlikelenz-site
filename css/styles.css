@@ -82,6 +82,34 @@
 [data-theme="light"] .theme-toggle .icon-moon { display: block; }
 [data-theme="light"] .theme-toggle .icon-sun { display: none; }
 
+/* Mobile nav burger button (hidden above the 900px breakpoint) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--gold);
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-toggle:hover { border-color: var(--gold); color: var(--gold-bright); }
+.nav-toggle svg { width: 1.15rem; height: 1.15rem; }
+.nav-toggle .icon-close { display: none; }
+.nav-toggle.open .icon-burger { display: none; }
+.nav-toggle.open .icon-close { display: block; }
+
 
 /* 2. Reset & base
    ========================================================================== */
@@ -1163,7 +1191,30 @@ footer .display {
    ========================================================================== */
 @media (max-width: 900px) {
   nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 1.5rem 1.5rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .nav-links.open { display: flex; }
+
+  .nav-links a {
+    display: block;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--line);
+  }
+
   section { padding: 5rem 1.5rem; }
 
   .hero {

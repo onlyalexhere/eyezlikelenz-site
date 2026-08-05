@@ -4,8 +4,9 @@
  * Gates the bank details behind a private access code.
  *
  * Bank details are XOR-obfuscated with the access code and base64
- * encoded so they are not visible in plain HTML to crawlers, casual
- * page-source viewers, or anyone who hasn't been given the code.
+ * encoded (see xor-codec.js) so they are not visible in plain HTML to
+ * crawlers, casual page-source viewers, or anyone who hasn't been
+ * given the code.
  *
  * This is obfuscation, not cryptographic security. A determined
  * attacker who studies the code can recover the data. The goal here
@@ -19,48 +20,28 @@
  *
  *      encodeBankDetails('NEW_CODE_HERE', 'Account Name|Bank|Sort|Acct')
  *
- *    e.g.
- *      encodeBankDetails('NEW2026', '***REDACTED***')
- *
  * 2. Copy the returned string and paste it as the new value of
  *    ENCODED below.
- * 3. Share the new code privately with confirmed clients only.
+ * 3. Share the new code privately with confirmed clients only —
+ *    never paste the code or the plaintext bank details into a
+ *    comment, commit message, or anywhere else that ends up in git
+ *    history, since this repo is public.
  * =====================================================================
  */
 
 (function () {
   'use strict';
 
-  // Encoded bank details. Generated with the helper at the bottom of this file.
-  // Current code: ***REDACTED***
-  // Current payload: ***REDACTED***
-  var ENCODED = '***REDACTED***';
-
-  /**
-   * Attempt to decode the bank details with the given access code.
-   * Returns an array of 4 strings on success, null on failure.
-   */
-  function tryUnlock(code) {
-    if (!code) return null;
-    try {
-      var bytes = atob(ENCODED);
-      var out = '';
-      for (var i = 0; i < bytes.length; i++) {
-        out += String.fromCharCode(bytes.charCodeAt(i) ^ code.charCodeAt(i % code.length));
-      }
-      // A valid decode produces exactly 4 pipe-separated, printable parts.
-      if (out.split('|').length === 4 && /^[\x20-\x7E]+$/.test(out)) {
-        return out.split('|');
-      }
-    } catch (e) {
-      // Bad base64 or string handling, fall through.
-    }
-    return null;
-  }
+  // Encoded bank details. Generated with encodeBankDetails() below.
+  // The access code is shared privately with confirmed clients and is
+  // NOT recorded anywhere in this repo.
+  // Override hook for tests only — never set in production.
+  var ENCODED = (typeof window !== 'undefined' && window.__ELL_TEST_ENCODED__) ||
+    'FiIiPFRZXFUlbgg9UFxXXDYyDxd3dEQEZ2N2dRgOC0xif3V3DQYNCQ==';
 
   function attemptUnlock() {
     var code = codeInput.value.trim().toUpperCase();
-    var result = tryUnlock(code);
+    var result = XorCodec.decode(code, ENCODED);
     if (result) {
       document.getElementById('bank-name').textContent = result[0];
       document.getElementById('bank-bank').textContent = result[1];
@@ -105,15 +86,7 @@
       console.warn('Usage: encodeBankDetails("CODE", "Name|Bank|Sort|Account")');
       return null;
     }
-    var bytes = [];
-    for (var i = 0; i < payload.length; i++) {
-      bytes.push(payload.charCodeAt(i) ^ code.charCodeAt(i % code.length));
-    }
-    var binary = '';
-    for (var j = 0; j < bytes.length; j++) {
-      binary += String.fromCharCode(bytes[j]);
-    }
-    var encoded = btoa(binary);
+    var encoded = XorCodec.encode(code, payload);
     console.log('New ENCODED value:', encoded);
     console.log('Paste this into js/payment-unlock.js as the ENCODED constant.');
     return encoded;
