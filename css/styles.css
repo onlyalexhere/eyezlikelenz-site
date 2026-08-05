@@ -165,8 +165,14 @@ nav {
   justify-content: space-between;
   align-items: center;
   background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
+  /* Isolates nav on its own compositing layer. Without this, iOS Safari's
+     fixed-position + backdrop-filter combo can flash solid black when the
+     mobile dropdown's DOM changes (menu open/close) invalidates the layer. */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .logo {
