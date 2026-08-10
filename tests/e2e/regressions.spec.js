@@ -34,7 +34,7 @@ test.describe('iOS Safari: nav flashed solid black on menu open/close', () => {
 
 test.describe('paying without a date allowed double-booking', () => {
   test('no bare Stripe checkout link exists on any page', async ({ page }) => {
-    for (const url of ['/', '/portfolio/', '/terms/']) {
+    for (const url of ['/', '/pricing/', '/portfolio/', '/terms/']) {
       await page.goto(url);
       await expect(page.locator('a[href^="https://buy.stripe.com/"]')).toHaveCount(0);
     }
@@ -43,7 +43,7 @@ test.describe('paying without a date allowed double-booking', () => {
 
 test.describe('prices drifting between the pricing and booking sections', () => {
   test('every tier shows the same price in both places', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
 
     const priceOf = (locator) =>
       locator.evaluateAll((els) =>
@@ -58,7 +58,7 @@ test.describe('prices drifting between the pricing and booking sections', () => 
   });
 
   test('the booking section and terms agree on the 48 hour cutoff', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
     await expect(page.locator('.payment-sidenote')).toContainText(/48 hours/i);
 
     await page.goto('/terms/');
@@ -70,7 +70,7 @@ test.describe('CSS class renames silently unstyling the page', () => {
   // The booking cards were once .stripe-card. If the CSS and HTML ever fall
   // out of sync again, the cards render as unstyled inline text.
   test('booking cards still pick up their styles', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
     const styles = await page.locator('.booking-card').first().evaluate((el) => {
       const cs = getComputedStyle(el);
       return { display: cs.display, borderTopWidth: cs.borderTopWidth, padding: cs.paddingTop };
@@ -82,7 +82,7 @@ test.describe('CSS class renames silently unstyling the page', () => {
   });
 
   test('no element references a stale stripe-* class', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
     const stale = await page.evaluate(() =>
       Array.from(document.querySelectorAll('[class]'))
         .map((el) => el.className)
@@ -96,7 +96,7 @@ test.describe('mobile nav was unreachable below 900px', () => {
   test('every page offers a way to reach all nav links on a phone', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
 
-    for (const url of ['/', '/portfolio/', '/terms/']) {
+    for (const url of ['/', '/pricing/', '/portfolio/', '/terms/']) {
       await page.goto(url);
       const toggle = page.locator('#nav-toggle');
       await expect(toggle, `burger missing on ${url}`).toBeVisible();
@@ -111,7 +111,7 @@ test.describe('mobile nav was unreachable below 900px', () => {
 
 test.describe('portfolio images shipped with empty alt text', () => {
   test('every image that actually loads something has descriptive alt text', async ({ page }) => {
-    for (const url of ['/', '/portfolio/', '/terms/']) {
+    for (const url of ['/', '/pricing/', '/portfolio/', '/terms/']) {
       await page.goto(url);
       // Wait for the JS-rendered portfolio grid where applicable.
       if (url === '/portfolio/') {
@@ -132,7 +132,7 @@ test.describe('portfolio images shipped with empty alt text', () => {
   test('no image has an empty src that makes the browser refetch the page', async ({ page }) => {
     // <img src=""> resolves to the current page URL and triggers a wasted
     // request. The lightbox placeholder used to do exactly this.
-    for (const url of ['/', '/portfolio/', '/terms/']) {
+    for (const url of ['/', '/pricing/', '/portfolio/', '/terms/']) {
       await page.goto(url);
       const emptySrc = await page.evaluate(() =>
         Array.from(document.images)

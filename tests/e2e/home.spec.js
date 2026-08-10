@@ -12,8 +12,23 @@ test.describe('home page', () => {
     await page.goto('/');
     await expect(page.locator('nav a[href="/portfolio/"]')).toBeVisible();
     await expect(page.locator('nav a[href="/terms/"]')).toBeVisible();
-    await expect(page.locator('nav a[href="#pricing"]')).toBeVisible();
+    await expect(page.locator('nav a[href="/pricing/"]')).toBeVisible();
+    await expect(page.locator('nav a[href="/pricing/#payment"]')).toBeVisible();
     await expect(page.locator('nav a[href="#contact"]')).toBeVisible();
+  });
+
+  test('hero CTAs lead to the pricing and booking page', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.cta-group a[href="/pricing/"]')).toBeVisible();
+    await expect(page.locator('.cta-group a[href="/pricing/#payment"]')).toBeVisible();
+  });
+
+  test('no longer carries the pricing or booking sections itself', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#pricing')).toHaveCount(0);
+    await expect(page.locator('#payment')).toHaveCount(0);
+    await expect(page.locator('.price-card')).toHaveCount(0);
+    await expect(page.locator('[data-booking-tier]')).toHaveCount(0);
   });
 
   test('theme toggle switches theme and persists across reload', async ({ page }) => {
@@ -38,7 +53,7 @@ test.describe('home page', () => {
 
 test.describe('pricing', () => {
   test('displays the three tiers with the correct prices', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
     const cards = page.locator('.price-card');
     await expect(cards).toHaveCount(3);
 
@@ -53,7 +68,7 @@ test.describe('pricing', () => {
 
 test.describe('booking entry points', () => {
   test('each booking card shows the right tier and price', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
     const bookingCards = page.locator('.booking-card');
     await expect(bookingCards).toHaveCount(3);
 
@@ -63,7 +78,7 @@ test.describe('booking entry points', () => {
   });
 
   test('every booking entry point is tagged with a tier the config knows about', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
     // 3 pricing-card buttons + 3 booking cards in the booking section.
     const bookable = page.locator('[data-booking-tier]');
     await expect(bookable).toHaveCount(6);
@@ -80,7 +95,7 @@ test.describe('booking entry points', () => {
   });
 
   test('booking buttons never render as dead links, configured or not', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
     const configured = await page.evaluate(function () {
       return Boolean(window.BOOKING_CONFIG && window.BOOKING_CONFIG.username);
     });
@@ -91,14 +106,14 @@ test.describe('booking entry points', () => {
       if (configured) {
         expect(href).toMatch(/^https:\/\/cal\.com\/.+\/.+/);
       } else {
-        // Falls back to the enquiry section until Cal.com is set up.
-        expect(href).toBe('#contact');
+        // Falls back to the enquiry section on the home page until Cal.com is set up.
+        expect(href).toBe('/#contact');
       }
     }
   });
 
   test('no standalone pay-now link can be used without picking a date', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/pricing/');
     // Paying outside the booking flow is what allowed double-booking, so the
     // page must not offer a bare Stripe checkout link anywhere.
     await expect(page.locator('a[href^="https://buy.stripe.com/"]')).toHaveCount(0);
@@ -107,7 +122,7 @@ test.describe('booking entry points', () => {
 
 test.describe('bank transfer gate', () => {
   test('rejects an incorrect access code without revealing bank details', async ({ page }) => {
-    await page.goto('/#payment');
+    await page.goto('/pricing/#payment');
     await page.fill('#access-code', 'DEFINITELY-NOT-A-VALID-CODE');
     await page.click('#unlock-btn');
 
@@ -122,7 +137,7 @@ test.describe('bank transfer gate', () => {
   });
 
   test('an empty submission is also rejected, not silently accepted', async ({ page }) => {
-    await page.goto('/#payment');
+    await page.goto('/pricing/#payment');
     await page.click('#unlock-btn');
 
     await expect(page.locator('#payment-unlocked')).toBeHidden();

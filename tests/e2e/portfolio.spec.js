@@ -37,6 +37,39 @@ test.describe('portfolio page', () => {
   });
 });
 
+test.describe('pricing page', () => {
+  test('carries both the pricing and booking sections', async ({ page }) => {
+    await page.goto('/pricing/');
+    await expect(page.locator('#pricing')).toBeVisible();
+    await expect(page.locator('#payment')).toBeVisible();
+    await expect(page.locator('.price-card')).toHaveCount(3);
+    await expect(page.locator('.booking-card')).toHaveCount(3);
+  });
+
+  test('the "Pricing" nav link is marked active', async ({ page }) => {
+    await page.goto('/pricing/');
+    await expect(page.locator('nav a.active')).toHaveAttribute('href', '/pricing/');
+  });
+
+  test('has its own title and description rather than inheriting the home page', async ({ page }) => {
+    await page.goto('/pricing/');
+    await expect(page).toHaveTitle(/Pricing/);
+    const desc = await page.locator('meta[name="description"]').getAttribute('content');
+    expect(desc).toMatch(/pricing|booking/i);
+  });
+
+  test('enquiry links resolve to the home page, not a dead anchor', async ({ page }) => {
+    await page.goto('/pricing/');
+    // #contact lives on the home page now, so bare "#contact" would go nowhere.
+    const dangling = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('a[href^="#"]'))
+        .filter((a) => !document.querySelector(a.getAttribute('href')))
+        .map((a) => a.getAttribute('href'))
+    );
+    expect(dangling).toEqual([]);
+  });
+});
+
 test.describe('terms page', () => {
   test('lists all 11 numbered clauses', async ({ page }) => {
     await page.goto('/terms/');

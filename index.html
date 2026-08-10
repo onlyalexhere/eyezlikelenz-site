@@ -32,9 +32,9 @@
   <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="/pricing/">Pricing</a></li>
     <li><a href="/portfolio/">Portfolio</a></li>
-    <li><a href="#payment">Book</a></li>
+    <li><a href="/pricing/#payment">Book</a></li>
     <li><a href="/terms/">Terms</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -56,8 +56,8 @@
     <h1 class="display">I shoot<br>the <span class="accent">moment</span><br>you forget.</h1>
     <p class="hero-sub">Weddings, events, portraits, brands. Documented properly. Edited with intention. Delivered fast.</p>
     <div class="cta-group">
-      <a href="#pricing" class="btn btn-primary">View Pricing</a>
-      <a href="#contact" class="btn">Book a Shoot</a>
+      <a href="/pricing/" class="btn btn-primary">View Pricing</a>
+      <a href="/pricing/#payment" class="btn">Book a Shoot</a>
     </div>
   </div>
   <div class="hero-visual reveal">
@@ -148,141 +148,10 @@
   </div>
 </section>
 
-<section id="pricing">
-  <div class="section-header">
-    <div class="section-number">03 / Pricing</div>
-    <h2 class="section-title display">Plain <span class="italic">numbers.</span></h2>
-  </div>
-  <div class="pricing-grid">
-    <div class="price-card reveal">
-      <div class="price-tier">Essentials</div>
-      <h4>Half Session</h4>
-      <div class="price-amount display"><span class="currency">£</span>110 <span class="period">/ 2 hours</span></div>
-      <ul class="price-features">
-        <li>Up to 2 hours of shooting</li>
-        <li>One location</li>
-        <li>Full gallery of all keeper images</li>
-        <li>20 fully edited high res selects</li>
-        <li>Private online gallery</li>
-        <li>Personal usage license</li>
-      </ul>
-      <a href="#contact" class="btn" data-booking-tier="half">Check dates &amp; book</a>
-    </div>
-    <div class="price-card featured reveal">
-      <div class="featured-label">Most Booked</div>
-      <div class="price-tier">Signature</div>
-      <h4>Full Session</h4>
-      <div class="price-amount display"><span class="currency">£</span>215 <span class="period">/ 4 hours</span></div>
-      <ul class="price-features">
-        <li>Up to 4 hours of shooting</li>
-        <li>Up to 2 locations</li>
-        <li>Full gallery of all keeper images</li>
-        <li>50 fully edited high res selects</li>
-        <li>Private online gallery</li>
-        <li>Personal and limited commercial use</li>
-        <li>Pre shoot consultation</li>
-      </ul>
-      <a href="#contact" class="btn" data-booking-tier="full">Check dates &amp; book</a>
-    </div>
-    <div class="price-card reveal">
-      <div class="price-tier">Commission</div>
-      <h4>Full Day</h4>
-      <div class="price-amount display"><span class="currency">£</span>525 <span class="period">/ 8 hours</span></div>
-      <ul class="price-features">
-        <li>Up to 8 hours of shooting</li>
-        <li>Multiple locations</li>
-        <li>Full gallery of all keeper images</li>
-        <li>100+ fully edited high res selects</li>
-        <li>Private online gallery</li>
-        <li>Extended usage license</li>
-        <li>Concept and planning call</li>
-      </ul>
-      <a href="#contact" class="btn" data-booking-tier="day">Check dates &amp; book</a>
-    </div>
-  </div>
-  <p class="pricing-note">Bespoke quotes available for weddings, multi day shoots, and brand commissions. Travel beyond Greater London is quoted separately.</p>
-</section>
-
-<section id="payment">
-  <div class="section-header">
-    <div class="section-number">04 / Booking</div>
-    <h2 class="section-title display">Pick a date, <span class="italic">pay, done.</span></h2>
-  </div>
-  <div class="payment-wrap reveal">
-    <p class="payment-intro">Choose your session, pick an available date, and pay by card in one go. The date is yours the moment payment clears.</p>
-    <p class="payment-sidenote">Dates already taken won't appear. Bookings close 48 hours before the shoot date.</p>
-
-    <div class="booking-options">
-      <div class="booking-heading">Check availability</div>
-      <div class="booking-cards">
-        <a href="#contact" class="booking-card" data-booking-tier="half">
-          <div class="booking-tier">Essentials</div>
-          <div class="booking-name">Half Session</div>
-          <div class="booking-price">£110 <span>/ 2 hours</span></div>
-          <div class="booking-cta">See dates ↗</div>
-        </a>
-        <a href="#contact" class="booking-card booking-card-featured" data-booking-tier="full">
-          <div class="booking-tier">Signature</div>
-          <div class="booking-name">Full Session</div>
-          <div class="booking-price">£215 <span>/ 4 hours</span></div>
-          <div class="booking-cta">See dates ↗</div>
-        </a>
-        <a href="#contact" class="booking-card" data-booking-tier="day">
-          <div class="booking-tier">Commission</div>
-          <div class="booking-name">Full Day</div>
-          <div class="booking-price">£525 <span>/ 8 hours</span></div>
-          <div class="booking-cta">See dates ↗</div>
-        </a>
-      </div>
-    </div>
-
-    <div class="payment-divider"><span>weddings &amp; bespoke commissions</span></div>
-
-    <div id="payment-locked" class="payment-locked">
-      <div class="lock-icon">✦</div>
-      <h3 class="lock-title display">Bank details available <span class="italic">on request.</span></h3>
-      <p class="lock-text">Weddings, multi day shoots, and brand commissions are quoted individually and paid by bank transfer rather than through the booking calendar. To protect against fraud and unsolicited transfers, payment details are released only to confirmed clients. Once your enquiry is acknowledged you will receive a private access code by email or DM.</p>
-      <div class="lock-form">
-        <input type="text" id="access-code" placeholder="Enter access code" autocomplete="off" spellcheck="false">
-        <button id="unlock-btn" class="btn btn-primary">Unlock</button>
-      </div>
-      <p class="lock-error" id="lock-error"></p>
-      <p class="lock-help">Don't have a code? <a href="#contact">Send an enquiry first</a>.</p>
-    </div>
-
-    <div id="payment-unlocked" class="bank-details" style="display: none;">
-      <div class="bank-row">
-        <div class="bank-label">Account Name</div>
-        <div class="bank-value" id="bank-name"></div>
-      </div>
-      <div class="bank-row">
-        <div class="bank-label">Bank</div>
-        <div class="bank-value" id="bank-bank"></div>
-      </div>
-      <div class="bank-row">
-        <div class="bank-label">Sort Code</div>
-        <div class="bank-value" id="bank-sort"></div>
-      </div>
-      <div class="bank-row">
-        <div class="bank-label">Account Number</div>
-        <div class="bank-value" id="bank-account"></div>
-      </div>
-      <div class="bank-row">
-        <div class="bank-label">Reference</div>
-        <div class="bank-value">Your full name + shoot date</div>
-      </div>
-    </div>
-
-    <div class="payment-note">
-      <strong>Please note:</strong> sessions are paid in full at the time of booking. The shoot date is not held in the diary until payment clears, and a 10% booking fee is non refundable on cancellation except in the circumstances set out in section 04 of the Terms. Once payment is received an invoice marked paid will be emailed to you within one working day.
-    </div>
-  </div>
-</section>
-
 <section id="contact">
   <div class="contact-grid">
     <div class="contact-text reveal">
-      <div class="section-number">05 / Contact</div>
+      <div class="section-number">03 / Contact</div>
       <h2 class="display">Let's make<br>something <span class="italic">loud.</span></h2>
       <p>Send an email or DM on Instagram with the date, the brief, and the vibe. I reply to every enquiry within two working days.</p>
       <div class="contact-icons">
@@ -328,10 +197,6 @@
 
 <script src="/js/theme.js"></script>
 <script src="/js/nav-menu.js"></script>
-<script src="/js/xor-codec.js"></script>
-<script src="/js/payment-unlock.js"></script>
-<script src="/js/booking-config.js"></script>
-<script src="/js/booking.js"></script>
 <script src="/js/reveal.js"></script>
 
 </body>

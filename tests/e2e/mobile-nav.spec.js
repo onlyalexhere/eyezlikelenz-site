@@ -27,14 +27,34 @@ test.describe('mobile nav menu', () => {
     }
   });
 
-  test('closes when a link is tapped and navigates to the right section', async ({ page }) => {
+  test('closes and scrolls when a same-page link is tapped', async ({ page }) => {
     await page.goto('/');
     await page.locator('#nav-toggle').tap();
-    await page.locator('#nav-links a[href="#pricing"]').tap();
+    await page.locator('#nav-links a[href="#contact"]').tap();
 
     await expect(page.locator('#nav-links')).toBeHidden();
-    await expect(page).toHaveURL(/#pricing$/);
-    await expect(page.locator('#pricing')).toBeInViewport();
+    await expect(page).toHaveURL(/#contact$/);
+    await expect(page.locator('#contact')).toBeInViewport();
+  });
+
+  test('navigates away when a cross-page link is tapped', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#nav-toggle').tap();
+    await page.locator('#nav-links a[href="/pricing/"]').tap();
+
+    await expect(page).toHaveURL(/\/pricing\/$/);
+    await expect(page.locator('.price-card').first()).toBeVisible();
+    // The menu must not carry over as open into the new page.
+    await expect(page.locator('#nav-links')).toBeHidden();
+  });
+
+  test('deep-links straight to the booking section from the nav', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#nav-toggle').tap();
+    await page.locator('#nav-links a[href="/pricing/#payment"]').tap();
+
+    await expect(page).toHaveURL(/\/pricing\/#payment$/);
+    await expect(page.locator('#payment')).toBeInViewport();
   });
 
   test('closes on outside tap', async ({ page }) => {

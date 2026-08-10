@@ -1,12 +1,15 @@
 # EyezLikeLenz Photography
 
-Single page site for Alex Oyekola Photography: about, services, pricing, payment, terms, and contact. Static HTML, no build step, no framework, no runtime dependencies beyond Google Fonts. A Node-based test suite (dev-only) covers the business-critical logic — see [Testing](#testing).
+Site for Alex Oyekola Photography: home (about, services, contact), plus pricing & booking, portfolio, and terms pages. Static HTML, no build step, no framework, no runtime dependencies beyond Google Fonts. A Node-based test suite (dev-only) covers the business-critical logic — see [Testing](#testing).
 
 ## Structure
 
 ```
 eyezlikelenz-site/
-├── index.html              Page markup
+├── index.html              Home: hero, about, services, contact
+├── pricing/index.html      Pricing tiers + booking and payment
+├── portfolio/index.html    Photo grid + lightbox
+├── terms/index.html        Terms and conditions
 ├── css/
 │   └── styles.css          All styling (sectioned by component)
 ├── js/
@@ -43,7 +46,7 @@ Push the folder to any static host: GitHub Pages, Netlify, Vercel, Cloudflare Pa
 
 ### Prices
 
-Open `index.html`, find the `#pricing` section, and change the values inside `.price-amount` and the `.price-features` lists.
+Open `pricing/index.html`, find the `#pricing` section, and change the values inside `.price-amount` and the `.price-features` lists.
 
 ### Bank details / access code
 
@@ -94,11 +97,11 @@ That's the whole integration — `booking-config.js` is the only file you should
 
 **How the buttons behave:** they're real `<a href="https://cal.com/...">` links, so they work even if Cal's script is blocked or JS is off. When the script does load (only once someone hovers or taps a booking button — never on a plain page view) it upgrades them into an in-page popup that matches the site's light/dark theme.
 
-**Changing prices:** the price lives in *two* places — the pricing cards in `index.html` and the Cal.com event type. Update both, or clients will see one price and be charged another.
+**Changing prices:** the price lives in *two* places — the pricing cards in `pricing/index.html` and the Cal.com event type. Update both, or clients will see one price and be charged another.
 
 ### Terms and conditions
 
-All clauses live in the `#terms` section of `index.html`. They are numbered consecutively, so if you add or remove one, renumber the `<span class="num">` labels.
+All clauses live in the `#terms` section of `terms/index.html`. They are numbered consecutively, so if you add or remove one, renumber the `<span class="num">` labels.
 
 ### Colours and fonts
 
