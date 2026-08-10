@@ -662,11 +662,11 @@ section {
   letter-spacing: 0.02em;
 }
 
-.stripe-options {
+.booking-options {
   margin-bottom: 2.5rem;
 }
 
-.stripe-heading {
+.booking-heading {
   font-size: 0.75rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -674,13 +674,13 @@ section {
   margin-bottom: 1.2rem;
 }
 
-.stripe-cards {
+.booking-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
-.stripe-card {
+.booking-card {
   display: flex;
   flex-direction: column;
   padding: 1.6rem;
@@ -691,43 +691,43 @@ section {
   gap: 0.3rem;
 }
 
-.stripe-card:hover {
+.booking-card:hover {
   border-color: var(--gold);
   background: rgba(212, 168, 87, 0.05);
 }
 
-.stripe-card-featured {
+.booking-card-featured {
   border-color: var(--gold);
 }
 
-.stripe-tier {
+.booking-tier {
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
 }
 
-.stripe-name {
+.booking-name {
   font-family: 'Fraunces', serif;
   font-size: 1.2rem;
   color: var(--cream);
   margin-top: 0.2rem;
 }
 
-.stripe-price {
+.booking-price {
   font-family: 'Fraunces', serif;
   font-size: 1.5rem;
   color: var(--cream);
   margin-top: 0.4rem;
 }
 
-.stripe-price span {
+.booking-price span {
   font-family: 'Inter Tight', sans-serif;
   font-size: 0.8rem;
   color: var(--ink-soft);
 }
 
-.stripe-cta {
+.booking-cta {
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1248,7 +1248,7 @@ footer .display {
   .price-card.featured { transform: none; }
   .stats { grid-template-columns: 1fr 1fr; }
   .payment-wrap { padding: 2rem 1.5rem; }
-  .stripe-cards { grid-template-columns: 1fr; }
+  .booking-cards { grid-template-columns: 1fr; }
   .bank-row { grid-template-columns: 1fr; gap: 0.3rem; padding: 0.8rem 0; }
   .portfolio-grid { columns: 1; }
   .lightbox-prev { left: 0.5rem; }

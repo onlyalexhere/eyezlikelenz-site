@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const { SORT_CODE, BANK_NAMES } = require('../helpers/secret-patterns.js');
 
 test.describe('home page', () => {
   test('loads with the right title and hero', async ({ page }) => {
@@ -50,22 +51,57 @@ test.describe('pricing', () => {
   });
 });
 
-test.describe('stripe payment links', () => {
-  test('each pricing tier has a working "pay now" link to Stripe checkout', async ({ page }) => {
+test.describe('booking entry points', () => {
+  test('each booking card shows the right tier and price', async ({ page }) => {
     await page.goto('/');
-    const stripeCards = page.locator('.stripe-card');
-    await expect(stripeCards).toHaveCount(3);
+    const bookingCards = page.locator('.booking-card');
+    await expect(bookingCards).toHaveCount(3);
 
-    for (const card of await stripeCards.all()) {
-      const href = await card.getAttribute('href');
-      expect(href).toMatch(/^https:\/\/buy\.stripe\.com\//);
-      await expect(card).toHaveAttribute('target', '_blank');
-      await expect(card).toHaveAttribute('rel', /noopener/);
+    await expect(bookingCards.nth(0)).toContainText('£110');
+    await expect(bookingCards.nth(1)).toContainText('£215');
+    await expect(bookingCards.nth(2)).toContainText('£525');
+  });
+
+  test('every booking entry point is tagged with a tier the config knows about', async ({ page }) => {
+    await page.goto('/');
+    // 3 pricing-card buttons + 3 booking cards in the booking section.
+    const bookable = page.locator('[data-booking-tier]');
+    await expect(bookable).toHaveCount(6);
+
+    const tiers = await bookable.evaluateAll(function (els) {
+      return els.map(function (el) { return el.getAttribute('data-booking-tier'); });
+    });
+    const knownTiers = await page.evaluate(function () {
+      return Object.keys(window.BOOKING_CONFIG.events);
+    });
+    for (const tier of tiers) {
+      expect(knownTiers).toContain(tier);
     }
+  });
 
-    await expect(stripeCards.nth(0)).toContainText('£110');
-    await expect(stripeCards.nth(1)).toContainText('£215');
-    await expect(stripeCards.nth(2)).toContainText('£525');
+  test('booking buttons never render as dead links, configured or not', async ({ page }) => {
+    await page.goto('/');
+    const configured = await page.evaluate(function () {
+      return Boolean(window.BOOKING_CONFIG && window.BOOKING_CONFIG.username);
+    });
+
+    for (const el of await page.locator('[data-booking-tier]').all()) {
+      const href = await el.getAttribute('href');
+      expect(href).toBeTruthy();
+      if (configured) {
+        expect(href).toMatch(/^https:\/\/cal\.com\/.+\/.+/);
+      } else {
+        // Falls back to the enquiry section until Cal.com is set up.
+        expect(href).toBe('#contact');
+      }
+    }
+  });
+
+  test('no standalone pay-now link can be used without picking a date', async ({ page }) => {
+    await page.goto('/');
+    // Paying outside the booking flow is what allowed double-booking, so the
+    // page must not offer a bare Stripe checkout link anywhere.
+    await expect(page.locator('a[href^="https://buy.stripe.com/"]')).toHaveCount(0);
   });
 });
 
@@ -81,7 +117,8 @@ test.describe('bank transfer gate', () => {
 
     // The unlocked panel must not contain leaked bank text anywhere in the DOM.
     const bankHtml = await page.locator('#payment-unlocked').innerHTML();
-    expect(bankHtml).not.toMatch(/HSBC|[0-9]{2}-[0-9]{2}-[0-9]{2}/);
+    expect(bankHtml).not.toMatch(SORT_CODE);
+    expect(bankHtml).not.toMatch(BANK_NAMES);
   });
 
   test('an empty submission is also rejected, not silently accepted', async ({ page }) => {

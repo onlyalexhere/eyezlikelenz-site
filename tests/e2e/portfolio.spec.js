@@ -44,8 +44,19 @@ test.describe('terms page', () => {
     await expect(page.locator('.terms-section').first()).toContainText('Booking');
   });
 
-  test('states the non-refundable deposit percentage', async ({ page }) => {
+  test('states that sessions are paid in full at booking', async ({ page }) => {
     await page.goto('/terms/');
-    await expect(page.locator('.terms-section').first()).toContainText('10%');
+    await expect(page.locator('.terms-section').first()).toContainText(/paid in full at the time of booking/i);
+  });
+
+  test('states the 48 hour minimum booking notice', async ({ page }) => {
+    await page.goto('/terms/');
+    await expect(page.locator('.terms-section').first()).toContainText(/less than 48 hours/i);
+  });
+
+  test('states the non-refundable booking fee on cancellation', async ({ page }) => {
+    await page.goto('/terms/');
+    await expect(page.locator('.terms-section').nth(1)).toContainText('10%');
+    await expect(page.locator('.terms-section').nth(1)).toContainText('90%');
   });
 });

@@ -34,7 +34,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="/portfolio/">Portfolio</a></li>
-    <li><a href="#payment">Payment</a></li>
+    <li><a href="#payment">Book</a></li>
     <li><a href="/terms/">Terms</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -166,7 +166,7 @@
         <li>Private online gallery</li>
         <li>Personal usage license</li>
       </ul>
-      <a href="#contact" class="btn">Enquire</a>
+      <a href="#contact" class="btn" data-booking-tier="half">Check dates &amp; book</a>
     </div>
     <div class="price-card featured reveal">
       <div class="featured-label">Most Booked</div>
@@ -182,7 +182,7 @@
         <li>Personal and limited commercial use</li>
         <li>Pre shoot consultation</li>
       </ul>
-      <a href="#contact" class="btn">Enquire</a>
+      <a href="#contact" class="btn" data-booking-tier="full">Check dates &amp; book</a>
     </div>
     <div class="price-card reveal">
       <div class="price-tier">Commission</div>
@@ -197,7 +197,7 @@
         <li>Extended usage license</li>
         <li>Concept and planning call</li>
       </ul>
-      <a href="#contact" class="btn">Enquire</a>
+      <a href="#contact" class="btn" data-booking-tier="day">Check dates &amp; book</a>
     </div>
   </div>
   <p class="pricing-note">Bespoke quotes available for weddings, multi day shoots, and brand commissions. Travel beyond Greater London is quoted separately.</p>
@@ -205,43 +205,43 @@
 
 <section id="payment">
   <div class="section-header">
-    <div class="section-number">04 / Payment</div>
-    <h2 class="section-title display">How to <span class="italic">pay.</span></h2>
+    <div class="section-number">04 / Booking</div>
+    <h2 class="section-title display">Pick a date, <span class="italic">pay, done.</span></h2>
   </div>
   <div class="payment-wrap reveal">
-    <p class="payment-intro">Bookings are confirmed once payment is received.</p>
-    <p class="payment-sidenote">A confirmation will be sent again at least 72 hours before the shoot date.</p>
+    <p class="payment-intro">Choose your session, pick an available date, and pay by card in one go. The date is yours the moment payment clears.</p>
+    <p class="payment-sidenote">Dates already taken won't appear. Bookings close 48 hours before the shoot date.</p>
 
-    <div class="stripe-options">
-      <div class="stripe-heading">Pay by card</div>
-      <div class="stripe-cards">
-        <a href="https://buy.stripe.com/9B628t97K1EiemS4XgeIw00" target="_blank" rel="noopener" class="stripe-card">
-          <div class="stripe-tier">Essentials</div>
-          <div class="stripe-name">Half Session</div>
-          <div class="stripe-price">£110 <span>/ 2 hours</span></div>
-          <div class="stripe-cta">Pay now ↗</div>
+    <div class="booking-options">
+      <div class="booking-heading">Check availability</div>
+      <div class="booking-cards">
+        <a href="#contact" class="booking-card" data-booking-tier="half">
+          <div class="booking-tier">Essentials</div>
+          <div class="booking-name">Half Session</div>
+          <div class="booking-price">£110 <span>/ 2 hours</span></div>
+          <div class="booking-cta">See dates ↗</div>
         </a>
-        <a href="https://buy.stripe.com/dRmcN76ZC82G0w2dtMeIw01" target="_blank" rel="noopener" class="stripe-card stripe-card-featured">
-          <div class="stripe-tier">Signature</div>
-          <div class="stripe-name">Full Session</div>
-          <div class="stripe-price">£215 <span>/ 4 hours</span></div>
-          <div class="stripe-cta">Pay now ↗</div>
+        <a href="#contact" class="booking-card booking-card-featured" data-booking-tier="full">
+          <div class="booking-tier">Signature</div>
+          <div class="booking-name">Full Session</div>
+          <div class="booking-price">£215 <span>/ 4 hours</span></div>
+          <div class="booking-cta">See dates ↗</div>
         </a>
-        <a href="https://buy.stripe.com/bJebJ397K0Ae5QmcpIeIw02" target="_blank" rel="noopener" class="stripe-card">
-          <div class="stripe-tier">Commission</div>
-          <div class="stripe-name">Full Day</div>
-          <div class="stripe-price">£525 <span>/ 8 hours</span></div>
-          <div class="stripe-cta">Pay now ↗</div>
+        <a href="#contact" class="booking-card" data-booking-tier="day">
+          <div class="booking-tier">Commission</div>
+          <div class="booking-name">Full Day</div>
+          <div class="booking-price">£525 <span>/ 8 hours</span></div>
+          <div class="booking-cta">See dates ↗</div>
         </a>
       </div>
     </div>
 
-    <div class="payment-divider"><span>or pay by bank transfer</span></div>
+    <div class="payment-divider"><span>weddings &amp; bespoke commissions</span></div>
 
     <div id="payment-locked" class="payment-locked">
       <div class="lock-icon">✦</div>
       <h3 class="lock-title display">Bank details available <span class="italic">on request.</span></h3>
-      <p class="lock-text">To protect against fraud and unsolicited transfers, payment details are released only to confirmed clients. Once your enquiry is acknowledged you will receive a private access code by email or DM.</p>
+      <p class="lock-text">Weddings, multi day shoots, and brand commissions are quoted individually and paid by bank transfer rather than through the booking calendar. To protect against fraud and unsolicited transfers, payment details are released only to confirmed clients. Once your enquiry is acknowledged you will receive a private access code by email or DM.</p>
       <div class="lock-form">
         <input type="text" id="access-code" placeholder="Enter access code" autocomplete="off" spellcheck="false">
         <button id="unlock-btn" class="btn btn-primary">Unlock</button>
@@ -274,7 +274,7 @@
     </div>
 
     <div class="payment-note">
-      <strong>Please note:</strong> the 10% deposit is non refundable except in the circumstances set out in section 04 of the Terms. The shoot date is not held in the diary until the deposit clears. Once payment is received an invoice marked paid will be emailed to you within one working day.
+      <strong>Please note:</strong> sessions are paid in full at the time of booking. The shoot date is not held in the diary until payment clears, and a 10% booking fee is non refundable on cancellation except in the circumstances set out in section 04 of the Terms. Once payment is received an invoice marked paid will be emailed to you within one working day.
     </div>
   </div>
 </section>
@@ -330,6 +330,8 @@
 <script src="/js/nav-menu.js"></script>
 <script src="/js/xor-codec.js"></script>
 <script src="/js/payment-unlock.js"></script>
+<script src="/js/booking-config.js"></script>
+<script src="/js/booking.js"></script>
 <script src="/js/reveal.js"></script>
 
 </body>
