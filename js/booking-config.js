@@ -15,7 +15,7 @@
 var BOOKING_CONFIG = {
   // Your Cal.com username, e.g. 'eyezlikelenz' for cal.com/eyezlikelenz
   // Leave as '' to keep buttons pointing at the enquiry section.
-  username: '',
+  username: 'eyezlikelenz',
 
   // The slug of each event type, as it appears in the Cal.com URL.
   // e.g. slug 'half-session' => cal.com/eyezlikelenz/half-session
