@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EyezLikeLenz | Trusted Photography - Events, Portraits, Products, Brands</title>
   <meta name="description" content="EyezLikeLenz photography. Weddings, events, portraits and brand work. Based in London, available across the UK.">
+  <link rel="canonical" href="https://eyezlikelenz.com/">
+
+  <!-- Social share preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EyezLikeLenz">
+  <meta property="og:url" content="https://eyezlikelenz.com/">
+  <meta property="og:title" content="EyezLikeLenz — Photography in London">
+  <meta property="og:description" content="Weddings, events, portraits and brand work. Documented properly, edited with intention, delivered fast. Based in London, available across the UK.">
+  <meta property="og:image" content="https://eyezlikelenz.com/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A DJ mid-set at a night shot by EyezLikeLenz">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EyezLikeLenz — Photography in London">
+  <meta name="twitter:description" content="Weddings, events, portraits and brand work. Documented properly, edited with intention, delivered fast. Based in London, available across the UK.">
+  <meta name="twitter:image" content="https://eyezlikelenz.com/assets/og-image.jpg">
+  <meta name="twitter:image:alt" content="A DJ mid-set at a night shot by EyezLikeLenz">
+
   <script>
     (function () {
       try {
@@ -21,6 +40,71 @@
   <link rel="icon" type="image/png" href="/assets/logo-light.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" href="/assets/logo-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" href="/assets/logo-dark.png">
+
+  <!-- Structured data: helps Google show the business in local results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://eyezlikelenz.com/#business",
+    "name": "EyezLikeLenz",
+    "description": "Photography practice based in London covering weddings, events, portraits and brand work across the UK.",
+    "url": "https://eyezlikelenz.com/",
+    "image": "https://eyezlikelenz.com/assets/og-image.jpg",
+    "logo": "https://eyezlikelenz.com/assets/logo-dark.png",
+    "email": "alexanderoyekola@gmail.com",
+    "telephone": "+447456038901",
+    "priceRange": "££",
+    "currenciesAccepted": "GBP",
+    "paymentAccepted": "Credit Card, Bank Transfer",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "London",
+      "addressCountry": "GB"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "London" },
+      { "@type": "Country", "name": "United Kingdom" }
+    ],
+    "sameAs": ["https://instagram.com/eyezlikelenz"],
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Photography sessions",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Half Session",
+          "description": "Up to 2 hours of shooting, one location, 20 fully edited high res selects.",
+          "price": "110",
+          "priceCurrency": "GBP",
+          "url": "https://eyezlikelenz.com/pricing/"
+        },
+        {
+          "@type": "Offer",
+          "name": "Full Session",
+          "description": "Up to 4 hours of shooting, up to 2 locations, 50 fully edited high res selects.",
+          "price": "215",
+          "priceCurrency": "GBP",
+          "url": "https://eyezlikelenz.com/pricing/"
+        },
+        {
+          "@type": "Offer",
+          "name": "Full Day",
+          "description": "Up to 8 hours of shooting, multiple locations, 100+ fully edited high res selects.",
+          "price": "525",
+          "priceCurrency": "GBP",
+          "url": "https://eyezlikelenz.com/pricing/"
+        }
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -148,6 +232,16 @@
   </div>
 </section>
 
+<section id="testimonials">
+  <div class="section-header">
+    <!-- Unnumbered on purpose: this section disappears when no testimonial
+         is approved, and a numbered one would leave a gap in the sequence. -->
+    <div class="section-number">Words</div>
+    <h2 class="section-title display">What they <span class="italic">said.</span></h2>
+  </div>
+  <div id="testimonials-grid" class="testimonials-grid"></div>
+</section>
+
 <section id="contact">
   <div class="contact-grid">
     <div class="contact-text reveal">
@@ -197,6 +291,8 @@
 
 <script src="/js/theme.js"></script>
 <script src="/js/nav-menu.js"></script>
+<script src="/js/testimonials-config.js"></script>
+<script src="/js/testimonials.js"></script>
 <script src="/js/reveal.js"></script>
 
 </body>

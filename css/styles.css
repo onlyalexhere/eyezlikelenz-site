@@ -12,6 +12,7 @@
      9. Pricing
     10. Payment (including gated lock)
     11. Terms
+    11b. Testimonials
     12. Contact
     13. Footer
     14. Animations
@@ -943,6 +944,60 @@ section {
 }
 
 
+/* 11b. Testimonials
+   ========================================================================== */
+#testimonials { background: var(--bg-warm); }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.2rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s ease;
+}
+
+.testimonial:hover { border-color: var(--line-strong); }
+
+.testimonial-quote {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--cream);
+  margin: 0;
+}
+
+.testimonial-attr {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: auto;
+}
+
+.testimonial-client {
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.testimonial-shoot {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+
 /* 12. Contact
    ========================================================================== */
 #contact { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%); }
@@ -1243,6 +1298,9 @@ footer .display {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
+  .testimonials-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .testimonial { padding: 1.6rem; }
 
   .about-image { height: 420px; }
   .price-card.featured { transform: none; }

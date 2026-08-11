@@ -18,7 +18,11 @@ eyezlikelenz-site/
 │   ├── booking-config.js   Cal.com username + event slugs (the only file to edit)
 │   ├── booking.js          Turns booking buttons into Cal.com links/popups
 │   ├── nav-menu.js         Mobile burger menu
+│   ├── testimonials-config.js  Client quotes + approval flags (see below)
+│   ├── testimonials.js     Renders only approved quotes
 │   └── reveal.js           Scroll-triggered fade-ins
+├── robots.txt              Crawl policy, points at the sitemap
+├── sitemap.xml             All four pages
 ├── tests/                  Unit, integration, and e2e tests (see below)
 ├── README.md
 └── .gitignore
@@ -102,6 +106,44 @@ That's the whole integration — `booking-config.js` is the only file you should
 ### Terms and conditions
 
 All clauses live in the `#terms` section of `terms/index.html`. They are numbered consecutively, so if you add or remove one, renumber the `<span class="num">` labels.
+
+### Testimonials
+
+Quotes live in `js/testimonials-config.js`. **Nothing renders until `approved: true`** — while every entry is false, the whole section is removed from the page.
+
+The gate exists because publishing a quote a client hasn't agreed to is a fake review, which is unlawful in the UK under the Digital Markets, Competition and Consumers Act. The drafts currently in the file were written *for* the client, not *by* them.
+
+To publish one:
+
+1. Send the client their draft — *"I've written this up from how the day went, happy for me to use it, or would you rather word it yourself?"*
+2. Use whatever they send back, in their words.
+3. Set `approved: true` on that entry only.
+4. Keep their written reply somewhere safe.
+
+Delete any entry a client declines. Don't publish a softened version. A test fails the build if a quote is marked approved while still carrying its draft wording, so re-run `npm run test:unit` after editing.
+
+### Social share previews
+
+Every page carries Open Graph and Twitter Card tags so shared links render with an image — for a photography business this is the difference between a grey box and a photograph in someone's group chat.
+
+The image is `assets/og-image.jpg`, cropped to the required 1200×630. To change it, generate a new crop from any portfolio shot:
+
+```sh
+sips -Z 1200 portfolio/images/large/photo-01.jpg --out /tmp/og.jpg
+sips -c 630 1200 /tmp/og.jpg --out assets/og-image.jpg
+```
+
+After changing it, re-scrape the URL in [Facebook's debugger](https://developers.facebook.com/tools/debug/) — platforms cache share images aggressively.
+
+### Portfolio images
+
+Two sets: `thumbs/` for the grid, `large/` for the lightbox. Thumbs are capped at 900px (the grid column is ~420px, so this covers retina) at JPEG quality 60 — that keeps the whole grid near 5 MB instead of 16 MB, which matters on mobile data. If you regenerate them:
+
+```sh
+sips -Z 900 -s format jpeg -s formatOptions 60 input.jpg --out portfolio/images/thumbs/photo-NN.jpg
+```
+
+Don't push thumbnails much past 900px or quality 70 — the gain is invisible at display size and the weight is not.
 
 ### Colours and fonts
 
