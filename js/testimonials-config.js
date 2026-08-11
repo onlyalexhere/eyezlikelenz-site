@@ -20,7 +20,7 @@
 var TESTIMONIALS = [
   {
     client: "Bigman's Party",
-    shoot: 'Birthday party, London',
+    shoot: 'Club night',
     quote: "He was everywhere and nowhere at the same time. Got every single one of my people without anyone feeling watched, and the gallery landed before the weekend was even over.",
     approved: true
   },
