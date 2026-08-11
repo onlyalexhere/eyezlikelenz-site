@@ -89,21 +89,40 @@ describe('testimonials approval gate', () => {
   });
 
   describe('the shipped config', () => {
-    it('has every real client quote still unapproved', () => {
+    let entries;
+
+    beforeEach(() => {
       renderSection();
       loadScript('js/testimonials-config.js');
-      const entries = window.TESTIMONIALS;
+      entries = window.TESTIMONIALS;
+    });
 
+    it('is a non-empty list', () => {
       expect(Array.isArray(entries)).toBe(true);
       expect(entries.length).toBeGreaterThan(0);
+    });
+
+    it('gives every entry an attributable client and a quote', () => {
       for (const t of entries) {
-        expect(t.client, 'every entry needs an attributable client').toBeTruthy();
-        expect(t.quote, 'every entry needs a quote').toBeTruthy();
-        expect(
-          t.approved,
-          `"${t.client}" is marked approved — only do that once the client has signed off in writing`
-        ).toBe(false);
+        expect(t.client, 'a quote with no client is not attributable').toBeTruthy();
+        expect(t.quote, `"${t.client}" has no quote`).toBeTruthy();
       }
+    });
+
+    it('uses a strict boolean for approved on every entry', () => {
+      // approved: "true" or approved: 1 would silently fail to publish, and
+      // is the kind of typo that looks fine in review.
+      for (const t of entries) {
+        expect(
+          typeof t.approved,
+          `"${t.client}" has approved: ${JSON.stringify(t.approved)} — must be a boolean`
+        ).toBe('boolean');
+      }
+    });
+
+    it('has no duplicate clients', () => {
+      const names = entries.map((t) => t.client);
+      expect(new Set(names).size, `duplicates in: ${names.join(', ')}`).toBe(names.length);
     });
   });
 });

@@ -111,16 +111,18 @@ All clauses live in the `#terms` section of `terms/index.html`. They are numbere
 
 Quotes live in `js/testimonials-config.js`. **Nothing renders until `approved: true`** — while every entry is false, the whole section is removed from the page.
 
-The gate exists because publishing a quote a client hasn't agreed to is a fake review, which is unlawful in the UK under the Digital Markets, Competition and Consumers Act. The drafts currently in the file were written *for* the client, not *by* them.
+The gate exists because publishing a quote a client hasn't agreed to is a fake review, which is unlawful in the UK under the Digital Markets, Competition and Consumers Act.
 
-To publish one:
+To add one:
 
-1. Send the client their draft — *"I've written this up from how the day went, happy for me to use it, or would you rather word it yourself?"*
-2. Use whatever they send back, in their words.
-3. Set `approved: true` on that entry only.
-4. Keep their written reply somewhere safe.
+1. Draft it, or ask the client to send their own words.
+2. Get their yes in writing — *"happy for me to use this, or would you rather word it yourself?"*
+3. Add the entry with `approved: true`.
+4. Keep their reply (email or DM screenshot) somewhere you can find it again.
 
-Delete any entry a client declines. Don't publish a softened version. A test fails the build if a quote is marked approved while still carrying its draft wording, so re-run `npm run test:unit` after editing.
+Delete any entry a client declines. Don't publish a softened version.
+
+Tests enforce the mechanism: a truthy-but-not-`true` value (`approved: "yes"`, `approved: 1`) won't publish, every entry needs an attributable client and a quote, and duplicates fail the build. Re-run `npm run test:unit` after editing.
 
 ### Social share previews
 
