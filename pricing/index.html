@@ -3,6 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Consent Mode v2 defaults. Must be queued before the Google tag loads, so
+       nothing is stored on the visitor's device until they opt in. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    (function () {
+      var granted = false;
+      try { granted = localStorage.getItem('ell-consent') === 'granted'; } catch (e) {}
+      var state = granted ? 'granted' : 'denied';
+      gtag('consent', 'default', {
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state,
+        wait_for_update: 500
+      });
+    })();
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18372660542"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'AW-18372660542');
+  </script>
+
   <title>EyezLikeLenz &mdash; Pricing &amp; Booking</title>
   <meta name="description" content="EyezLikeLenz photography pricing and booking. Half session, full session and full day rates. Pick an available date and pay by card.">
   <link rel="canonical" href="https://eyezlikelenz.com/pricing/">
@@ -212,6 +239,7 @@
 <script src="/js/booking-config.js"></script>
 <script src="/js/booking.js"></script>
 <script src="/js/reveal.js"></script>
+<script src="/js/consent.js"></script>
 
 </body>
 </html>

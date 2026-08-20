@@ -1316,3 +1316,100 @@ footer .display {
 @media (min-width: 901px) and (max-width: 1200px) {
   .portfolio-grid { columns: 2; }
 }
+
+/* ---------------------------------------------------------------------------
+   Cookie consent banner
+   Slides up from the bottom until the visitor chooses. Colours come from the
+   theme tokens, so it follows the light/dark toggle with no extra work.
+--------------------------------------------------------------------------- */
+.consent-banner {
+  position: fixed;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 900;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  transform: translateY(calc(100% + 2rem));
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1), opacity 0.45s ease;
+}
+
+.consent-banner.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.consent-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.consent-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.3rem;
+}
+
+.consent-dot { font-style: italic; color: var(--gold); font-weight: 300; }
+
+.consent-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.consent-text a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.consent-text a:hover { color: var(--gold-bright); }
+
+.consent-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.consent-actions .btn {
+  padding: 0.8rem 1.6rem;
+  white-space: nowrap;
+}
+
+.consent-actions .btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .consent-banner {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.35rem 1.25rem;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .consent-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .consent-actions .btn { flex: 1; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consent-banner { transition: opacity 0.2s ease; transform: none; }
+}
