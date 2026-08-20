@@ -71,9 +71,9 @@ test.describe('pricing page', () => {
 });
 
 test.describe('terms page', () => {
-  test('lists all 11 numbered clauses', async ({ page }) => {
+  test('lists all 13 numbered clauses', async ({ page }) => {
     await page.goto('/terms/');
-    await expect(page.locator('.terms-section')).toHaveCount(11);
+    await expect(page.locator('.terms-section')).toHaveCount(13);
     await expect(page.locator('.terms-section').first()).toContainText('Booking');
   });
 

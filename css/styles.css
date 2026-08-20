@@ -1413,3 +1413,33 @@ footer .display {
 @media (prefers-reduced-motion: reduce) {
   .consent-banner { transition: opacity 0.2s ease; transform: none; }
 }
+
+/* Keyboard focus has to be obvious on the consent controls specifically —
+   they are the only UI on the site with a legal consequence. */
+.consent-actions .btn:focus-visible,
+.consent-settings:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Footer trigger that reopens the banner. This is the withdrawal mechanism:
+   the ICO expects taking consent back to be as easy as giving it. */
+.consent-settings {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 0.6rem;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.8;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.consent-settings:hover {
+  color: var(--gold);
+  opacity: 1;
+}

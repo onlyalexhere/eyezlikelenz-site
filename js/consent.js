@@ -24,17 +24,48 @@
     }
   }
 
-  function decide(banner, granted) {
-    save(granted ? 'granted' : 'denied');
-    updateConsent(granted);
+  // Clearing the cookies matters on withdrawal: revoking consent has to
+  // actually remove what was already set, not just stop setting more.
+  function clearAdCookies() {
+    var host = location.hostname;
+    document.cookie.split(';').forEach(function (raw) {
+      var name = raw.split('=')[0].trim();
+      if (name.indexOf('_gcl') !== 0 && name.indexOf('_ga') !== 0) return;
+      var stem = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+      document.cookie = stem;
+      document.cookie = stem + '; domain=' + host;
+      document.cookie = stem + '; domain=.' + host;
+    });
+  }
+
+  var current = null;
+
+  function close() {
+    if (!current) return;
+    var banner = current;
+    current = null;
     banner.classList.remove('is-visible');
-    // Leave the node in place until the slide-out finishes, then drop it.
     setTimeout(function () {
       if (banner.parentNode) banner.parentNode.removeChild(banner);
     }, 400);
   }
 
-  function build() {
+  function decide(granted) {
+    save(granted ? 'granted' : 'denied');
+    updateConsent(granted);
+    if (!granted) clearAdCookies();
+    close();
+  }
+
+  function onKeydown(e) {
+    // Escape only dismisses a banner reopened from the footer — it must never
+    // stand in for a first-time choice, since silence is not consent.
+    if (e.key === 'Escape' && current && stored()) close();
+  }
+
+  function show() {
+    if (current) return current;
+
     var banner = document.createElement('div');
     banner.className = 'consent-banner';
     banner.setAttribute('role', 'dialog');
@@ -45,23 +76,25 @@
       '<div class="consent-inner">' +
         '<div class="consent-copy">' +
           '<div class="consent-title display" id="consent-title">Cookies<span class="consent-dot">.</span></div>' +
-          '<p class="consent-text" id="consent-text">I use cookies to measure how well my ads are working. ' +
-          'Nothing gets stored on your device unless you say yes, and declining changes nothing about how the site works. ' +
-          '<a href="/terms/">Read the terms</a>.</p>' +
+          '<p class="consent-text" id="consent-text">I use Google Ads cookies to measure how well my ads are working. ' +
+          'Nothing is stored on your device unless you accept, declining changes nothing about how the site works, ' +
+          'and you can change your mind at any time using the Cookie settings link in the footer. ' +
+          '<a href="/terms/#cookies">How I use cookies</a>.</p>' +
         '</div>' +
         '<div class="consent-actions">' +
-          '<button type="button" class="btn consent-decline">Decline</button>' +
-          '<button type="button" class="btn btn-primary consent-accept">Accept</button>' +
+          '<button type="button" class="btn consent-decline">Reject</button>' +
+          '<button type="button" class="btn consent-accept">Accept</button>' +
         '</div>' +
       '</div>';
 
     document.body.appendChild(banner);
+    current = banner;
 
     banner.querySelector('.consent-accept').addEventListener('click', function () {
-      decide(banner, true);
+      decide(true);
     });
     banner.querySelector('.consent-decline').addEventListener('click', function () {
-      decide(banner, false);
+      decide(false);
     });
 
     // Next frame, so the browser paints the off-screen state first and the
@@ -73,12 +106,32 @@
     return banner;
   }
 
-  // A stored choice was already applied by the head script — stay out of the way.
-  if (stored()) return;
+  function wireSettingsTriggers() {
+    var triggers = document.querySelectorAll('[data-consent-settings]');
+    for (var i = 0; i < triggers.length; i++) {
+      triggers[i].addEventListener('click', function (e) {
+        e.preventDefault();
+        show();
+      });
+    }
+  }
+
+  function init() {
+    wireSettingsTriggers();
+    // A stored choice was already applied by the head script — only reopen
+    // if the visitor asks for it via the footer.
+    if (!stored()) show();
+  }
+
+  document.addEventListener('keydown', onKeydown);
+
+  // Withdrawing consent has to be as easy as giving it, so the footer link
+  // on every page reopens this.
+  window.ELLConsent = { open: show, stored: stored };
 
   if (document.body) {
-    build();
+    init();
   } else {
-    document.addEventListener('DOMContentLoaded', build);
+    document.addEventListener('DOMContentLoaded', init);
   }
 })();
