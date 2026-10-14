@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('../helpers/browser-test');
 
 test.describe('portfolio page', () => {
   test('renders a non-empty grid of photos with descriptive alt text', async ({ page }) => {

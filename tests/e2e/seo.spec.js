@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('../helpers/browser-test');
 
 const PAGES = [
   { url: '/', canonical: 'https://eyezlikelenz.com/' },
@@ -18,7 +18,7 @@ test.describe('social share previews', () => {
       // Without og:image a shared link renders as a bare grey box — for a
       // photographer that is the whole pitch missing.
       expect(await meta('meta[property="og:image"]')).toBe(
-        'https://eyezlikelenz.com/assets/og-image.jpg'
+        'https://eyezlikelenz.com/assets/editorial/share.jpg'
       );
       expect(await meta('meta[property="og:image:width"]')).toBe('1200');
       expect(await meta('meta[property="og:image:height"]')).toBe('630');
@@ -46,7 +46,7 @@ test.describe('social share previews', () => {
   });
 
   test('the share image actually exists and is the right size', async ({ page }) => {
-    const res = await page.request.get('/assets/og-image.jpg');
+    const res = await page.request.get('/assets/editorial/share.jpg');
     expect(res.status()).toBe(200);
     const len = Number(res.headers()['content-length'] || 0);
     expect(len).toBeGreaterThan(10_000);

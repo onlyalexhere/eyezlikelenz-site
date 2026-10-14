@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('../helpers/browser-test');
 const { SORT_CODE, BANK_NAMES } = require('../helpers/secret-patterns.js');
 
 test.describe('home page', () => {
@@ -17,7 +17,7 @@ test.describe('home page', () => {
     await expect(page.locator('nav a[href="#contact"]')).toBeVisible();
   });
 
-  test('hero CTAs lead to the pricing and booking page', async ({ page }) => {
+  test('standard session links lead to pricing and booking', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('.cta-group a[href="/pricing/"]')).toBeVisible();
     await expect(page.locator('.cta-group a[href="/pricing/#payment"]')).toBeVisible();

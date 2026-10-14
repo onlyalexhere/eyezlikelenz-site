@@ -1,0 +1,154 @@
+/* Editorial direction: ivory paper, quiet olive accents and generous image space.
+   Shared across every page; the original component rules remain in styles.css. */
+:root, [data-theme="light"] {
+  --bg: #faf9f6; --bg-warm: #f0eee7; --surface: #fffefa;
+  --cream: #343a32; --paper: #faf9f6; --ink: #fffefa;
+  --ink-soft: #64685f; --gold: #626e54; --gold-bright: #414d36;
+  --rust: #8a7766; --line: #dbded2; --line-strong: #a8af9c;
+  --nav-bg: rgba(250,249,246,.97); --footer-bg: #e9eadd;
+  --featured-card: linear-gradient(140deg,#edf0e7,#f8f8f2);
+  --payment-bg: linear-gradient(var(--bg),var(--bg-warm));
+}
+[data-theme="dark"] {
+  --bg: #20251f; --bg-warm: #292f26; --surface: #30372d;
+  --cream: #f6f3e9; --paper: #f6f3e9; --ink: #20251f;
+  --ink-soft: #c1c7b8; --gold: #bdc7a9; --gold-bright: #d8e2c5;
+  --line: #454e3e; --line-strong: #7d8a6e; --nav-bg: rgba(32,37,31,.97);
+  --footer-bg: #191e18; --featured-card: linear-gradient(140deg,#333c2e,#242d20);
+}
+html { scroll-padding-top: 105px; }
+body::before { display: none; }
+body { font-size: 16px; }
+.display, h1, h2, h3 { font-weight: 300; }
+.display em { font-weight: 300; }
+nav { padding: 22px 4.5%; gap: 24px; }
+.logo { font-size: 1.45rem; letter-spacing: -.055em; white-space: nowrap; }
+.logo-img { height: 30px; }
+.logo-dot { display: none; }
+.nav-links { gap: clamp(15px,2vw,32px); font-size: .66rem; letter-spacing: .12em; }
+.nav-links a { color: var(--cream); }
+.nav-right { gap: 10px; }
+.theme-toggle, .nav-toggle { width: 44px; height: 44px; border-color: var(--line); }
+.skip-link { position: fixed; left: 16px; top: -100px; z-index: 1000; padding: 12px; background: var(--surface); color: var(--cream); }
+.skip-link:focus { top: 12px; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
+section { padding: 100px 6%; }
+.eyebrow, .section-number { font-family: 'Inter Tight',sans-serif; font-style: normal; font-size: .64rem; font-weight: 500; text-transform: uppercase; letter-spacing: .2em; color: var(--gold); }
+.eyebrow { margin-bottom: 28px; display: block; line-height: 1.8; }
+.btn { min-height: 48px; padding: 16px 25px; font-size: .66rem; letter-spacing: .12em; border-color: var(--line-strong); }
+.btn-primary { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.btn-primary:hover { background: var(--gold-bright); color: var(--ink); }
+.text-link { display: inline-block; color: var(--cream); text-decoration: none; font-size: .69rem; letter-spacing: .12em; text-transform: uppercase; padding: 12px 0; border-bottom: 1px solid var(--line-strong); }
+.text-link:hover { color: var(--gold); }
+.wedding-hero { min-height: 0; max-width: 1680px; margin: auto; padding: 145px 4.5% 0; display: grid; grid-template-columns: 1fr 1.1fr; gap: 0 5%; align-items: center; }
+.wedding-hero .hero-text { max-width: 620px; padding: 35px 0 45px; }
+.wedding-hero h1 { font-size: clamp(42px,4.9vw,76px); line-height: 1.1; letter-spacing: -.045em; }
+.wedding-hero h1 em { color: var(--gold); }
+.wedding-hero .hero-sub { max-width: 360px; margin: 28px 0 32px; font-size: 1rem; line-height: 1.85; }
+.wedding-hero .text-link { display: table; margin-top: 14px; }
+.hero-photograph { width: 100%; margin: 0; }
+.hero-photograph img { display: block; width: 100%; height: clamp(420px,43vw,650px); object-fit: cover; }
+.hero-photograph figcaption { text-align: right; font-family: 'Fraunces',serif; font-style: italic; font-size: .8rem; margin-top: 12px; color: var(--ink-soft); }
+.hero-footnote { grid-column: 1 / -1; display: flex; justify-content: space-between; padding: 35px 0; margin-top: 35px; border-top: 1px solid var(--line); font-size: .61rem; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-soft); }
+.hero-footnote a { color: inherit; text-decoration: none; }
+.selected-work { padding-top: 75px; }
+.editorial-heading { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 45px; }
+.editorial-heading h2 { font-size: clamp(30px,3.4vw,49px); }
+.editorial-heading .eyebrow { margin-bottom: 15px; }
+.story-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 28px; align-items: center; }
+.story-image { display: block; color: var(--ink-soft); text-decoration: none; }
+.story-image img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
+.story-image-wide img { aspect-ratio: 3/2; }
+.story-image span { display: block; margin-top: 14px; font-size: .61rem; letter-spacing: .15em; text-transform: uppercase; }
+#about { padding: 100px 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 7%; }
+#about .section-header { display: block; margin: 0; }
+#about .section-number { margin-bottom: 30px; }
+#about .section-title { font-size: clamp(34px,4vw,56px); line-height: 1.16; }
+.about-text .lead { font-size: 1.4rem; line-height: 1.5; }
+.about-text p { font-size: .95rem; line-height: 1.9; }
+.stats { padding-top: 25px; margin-top: 35px; gap: 15px; }
+.stat-number { font-size: 2.1rem; }
+.stat-label { font-size: .58rem; letter-spacing: .08em; }
+.section-header { grid-template-columns: 1fr 2fr; margin-bottom: 50px; gap: 35px; }
+.section-title { font-size: clamp(34px,4vw,56px); line-height: 1.15; }
+.services-grid { gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.service-card { background: var(--bg); border: 0; padding: 38px; }
+.service-card:hover { background: var(--surface); transform: none; }
+.service-card h3 { font-size: 1.85rem; }
+.service-card:first-child { background: var(--bg-warm); }
+.service-card .number { font-size: .9rem; }
+.service-card p, .service-list { font-size: .9rem; }
+.wedding-enquiry { margin-bottom: 20px; }
+.session-link { padding: 30px 6%; display: flex; align-items: center; justify-content: space-between; gap: 25px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.session-link p { font-family: 'Fraunces',serif; font-size: 1.2rem; }
+.session-link .cta-group { gap: 30px; margin: 0; }
+.testimonials-grid { gap: 30px; }
+.testimonial { background: transparent; border: 0; padding: 20px 0; }
+.testimonial + .testimonial { border-left: 1px solid var(--line); padding-left: 30px; }
+.testimonial-quote { font-size: 1.35rem; line-height: 1.55; }
+#contact { background: var(--bg); }
+.contact-text h2 { font-size: clamp(42px,5vw,70px); }
+.wedding-contact { margin: 10px 0 25px; }
+.contact-details .value { overflow-wrap: anywhere; }
+footer { padding: 45px 6%; border-top: 1px solid var(--line); }
+#pricing, #portfolio, #terms { padding-top: 145px; }
+.wedding-pricing-note { max-width: 700px; margin: -10px auto 50px; text-align: center; color: var(--ink-soft); line-height: 1.9; }
+.wedding-pricing-note a { color: var(--gold); text-underline-offset: 5px; }
+.price-card { box-shadow: none; border-color: var(--line); }
+.price-card.featured { transform: none; }
+.price-amount { color: var(--cream); }
+.payment-wrap { border-color: var(--line); box-shadow: none; }
+.booking-card-featured { background: var(--bg-warm); }
+.portfolio-grid { column-gap: 25px; }
+.portfolio-item { border: 0; margin-bottom: 25px; }
+/* Essential content is visible even when observers fail or JS is disabled. */
+.reveal { opacity: 1; transform: none; }
+@media (max-width: 1100px) and (min-width: 901px) { nav { padding-inline: 3%; gap: 14px; } .logo-img { display: none; } .nav-links { gap: 15px; } }
+@media (max-width: 900px) {
+ nav { padding: 14px 5%; }
+ .nav-links { gap: 0; max-height: calc(100dvh - 78px); overflow-y: auto; padding: 10px 5% 20px; box-shadow: 0 12px 20px #0000000d; }
+ .nav-links a { padding: 15px 0; }
+ .wedding-hero { padding: 110px 6% 0; grid-template-columns: 1fr 1fr; gap: 25px; }
+ .wedding-hero h1 { font-size: clamp(33px,5.6vw,52px); }
+ .wedding-hero .eyebrow { font-size: .57rem; }
+ .hero-photograph img { height: 480px; }
+ .wedding-hero .hero-text { padding: 20px 0; }
+ section { padding: 65px 6%; }
+ #about { padding: 65px 6%; gap: 35px; }
+ .story-grid { gap: 16px; }
+ .services-grid { gap: 1px; grid-template-columns: 1fr 1fr; }
+ .testimonials-grid { grid-template-columns: 1fr; }
+ .testimonial + .testimonial { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+ .hero-footnote { margin-top: 10px; }
+ .stats { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 600px) {
+ .logo { font-size: 1.25rem; }
+ .logo-img { height: 26px; }
+ .wedding-hero { grid-template-columns: 1fr; gap: 20px; padding-top: 105px; }
+ .wedding-hero h1 { font-size: clamp(42px,10.7vw,64px); }
+ .wedding-hero .hero-text { padding: 10px 0; }
+ .wedding-hero .hero-sub { margin: 20px 0 24px; }
+ .hero-photograph img { height: 350px; }
+ .hero-footnote { gap: 20px; font-size: .53rem; padding: 22px 0; }
+ .hero-footnote span { max-width: 170px; }
+ .editorial-heading { display: block; }
+ .editorial-heading .text-link { margin-top: 20px; }
+ .story-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+ .story-image-wide { grid-column: 1/-1; grid-row: 2; margin-top: 14px; }
+ .story-image span { font-size: .52rem; letter-spacing: .08em; }
+ #about { grid-template-columns: 1fr; }
+ .section-header { gap: 20px; grid-template-columns: 1fr; }
+ .services-grid { grid-template-columns: 1fr; }
+ .service-card { padding: 30px; }
+ .session-link { align-items: start; flex-direction: column; }
+ .session-link .cta-group { flex-wrap: wrap; }
+ .contact-grid { gap: 40px; }
+ #pricing, #portfolio, #terms { padding-top: 115px; }
+ .payment-wrap { padding: 28px 20px; }
+ .consent-banner { max-height: 45dvh; overflow-y: auto; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+.story-image img { height: auto; }
+.testimonials-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+@media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } }

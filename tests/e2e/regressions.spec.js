@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('../helpers/browser-test');
 
 /**
  * Guards against bugs this site has actually shipped. Each test names the

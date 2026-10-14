@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,22 +40,22 @@
   <meta property="og:url" content="https://eyezlikelenz.com/pricing/">
   <meta property="og:title" content="Pricing &amp; Booking — EyezLikeLenz">
   <meta property="og:description" content="Half session £110, full session £215, full day £525. Pick an available date and pay by card in one go.">
-  <meta property="og:image" content="https://eyezlikelenz.com/assets/og-image.jpg">
+  <meta property="og:image" content="https://eyezlikelenz.com/assets/editorial/share.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="A DJ mid-set at a night shot by EyezLikeLenz">
+  <meta property="og:image:alt" content="Sunlit waterfront photographed by EyezLikeLenz">
   <meta property="og:locale" content="en_GB">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Pricing &amp; Booking — EyezLikeLenz">
   <meta name="twitter:description" content="Half session £110, full session £215, full day £525. Pick an available date and pay by card in one go.">
-  <meta name="twitter:image" content="https://eyezlikelenz.com/assets/og-image.jpg">
-  <meta name="twitter:image:alt" content="A DJ mid-set at a night shot by EyezLikeLenz">
+  <meta name="twitter:image" content="https://eyezlikelenz.com/assets/editorial/share.jpg">
+  <meta name="twitter:image:alt" content="Sunlit waterfront photographed by EyezLikeLenz">
 
   <script>
     (function () {
       try {
         var t = localStorage.getItem('ell-theme');
-        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        if (t !== 'dark' && t !== 'light') t = 'light';
         document.documentElement.setAttribute('data-theme', t);
       } catch (e) {}
     })();
@@ -64,13 +64,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/editorial.css">
   <link rel="icon" type="image/png" href="/assets/logo-light.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" href="/assets/logo-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" href="/assets/logo-dark.png">
 </head>
 <body>
 
-<nav>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<nav aria-label="Main navigation">
   <a href="/" class="logo">
     <img src="/assets/logo-dark.png" alt="EyezLikeLenz" class="logo-img" id="logo-img">
     <span class="logo-text">EyezLikeLenz<span class="logo-dot">.</span></span>
@@ -95,12 +97,14 @@
     </button>
   </div>
 </nav>
+<main id="main-content">
 
 <section id="pricing">
   <div class="section-header">
     <div class="section-number">Pricing</div>
-    <h2 class="section-title display">Plain <span class="italic">numbers.</span></h2>
+    <h2 class="section-title display">Thoughtful photography.<br><span class="italic">Clear pricing.</span></h2>
   </div>
+  <p class="wedding-pricing-note">Planning a wedding? <a href="/#contact">Get in touch for a bespoke quote ↗</a><br>Explore standard portrait, event and brand sessions below.</p>
   <div class="pricing-grid">
     <div class="price-card reveal">
       <div class="price-tier">Essentials</div>
@@ -227,6 +231,7 @@
   </div>
 </section>
 
+</main>
 <footer>
   <div class="display">EyezLikeLenz</div>
   <div>© 2026 EyezLikeLenz. All rights reserved. Photography &amp; image rights retained by the photographer.</div>

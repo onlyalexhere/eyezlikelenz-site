@@ -203,3 +203,17 @@ None of the tests use the real production access code or bank details — the pa
 ## Licence
 
 All content and code © 2026 Alexander Oyekola. All rights reserved.
+
+### Editorial design
+
+The shared bright wedding direction lives in `css/editorial.css`, loaded after
+the existing component styles on all four pages. Light is the default; a visitor's
+explicit saved theme choice is retained. The homepage separates bespoke wedding
+enquiries from standard Cal.com sessions.
+
+The four images in `assets/editorial/` are optimized derivatives of the existing
+portfolio, used as temporary editorial filler (not presented as wedding coverage).
+Replace them with actual wedding work when available, updating their alt text,
+dimensions and the social preview together. Hero imagery is eager-loaded; the
+selected-work images below it are lazy-loaded. Essential page content remains
+visible if JavaScript or the scroll observer fails.

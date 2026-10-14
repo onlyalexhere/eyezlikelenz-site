@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('../helpers/browser-test');
 
 // iPhone 13-ish viewport, emulated on Chromium rather than pulling in the
 // (unbundled) WebKit engine — the mobile CSS breakpoint doesn't care which

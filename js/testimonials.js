@@ -23,6 +23,8 @@
     return;
   }
 
+  approved.sort(function (a, b) { return (b.shoot === 'Wedding') - (a.shoot === 'Wedding'); });
+
   approved.forEach(function (item) {
     var fig = document.createElement('figure');
     fig.className = 'testimonial reveal';
