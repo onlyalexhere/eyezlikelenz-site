@@ -13,6 +13,10 @@
   // Normalize entries: support plain strings or { thumb, full } objects.
   function thumbOf(item) { return (typeof item === 'string') ? item : item.thumb; }
   function fullOf(item) { return (typeof item === 'string') ? item : (item.full || item.thumb); }
+  function altOf(item, index) {
+    var description = (typeof item === 'string' || !item.alt) ? 'EyezLikeLenz portfolio photograph' : item.alt;
+    return description + ' — photograph ' + (index + 1) + ' of ' + images.length;
+  }
 
   // Lightbox elements
   var lightbox = document.getElementById('lightbox');
@@ -24,7 +28,7 @@
     // Fade the image out, swap source, fade back in once loaded for a smooth transition.
     lightboxImg.classList.remove('loaded');
     var src = fullOf(images[current]);
-    lightboxImg.alt = 'EyezLikeLenz portfolio photograph ' + (current + 1) + ' of ' + images.length;
+    lightboxImg.alt = altOf(images[current], current);
     var pre = new Image();
     pre.onload = function () {
       lightboxImg.src = src;
@@ -46,11 +50,11 @@
   images.forEach(function (item, i) {
     var fig = document.createElement('button');
     fig.className = 'portfolio-item';
-    fig.setAttribute('aria-label', 'View image ' + (i + 1));
+    fig.setAttribute('aria-label', 'View ' + altOf(item, i));
 
     var img = document.createElement('img');
     img.loading = 'lazy';
-    img.alt = 'EyezLikeLenz portfolio photograph ' + (i + 1) + ' of ' + images.length;
+    img.alt = altOf(item, i);
     img.src = thumbOf(item);
     img.onload = function () { fig.classList.add('loaded'); };
     img.onerror = function () { fig.style.display = 'none'; };

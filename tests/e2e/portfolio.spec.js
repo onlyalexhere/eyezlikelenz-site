@@ -10,6 +10,10 @@ test.describe('portfolio page', () => {
 
     const firstImg = items.first().locator('img');
     await expect(firstImg).toHaveAttribute('alt', /.+/);
+
+    const descriptions = await items.locator('img').evaluateAll((images) => images.map((image) => image.alt));
+    expect(new Set(descriptions).size).toBe(descriptions.length);
+    expect(descriptions.every((description) => !/^EyezLikeLenz portfolio photograph/.test(description))).toBe(true);
   });
 
   test('opens the lightbox on click, navigates, and closes on Escape', async ({ page }) => {

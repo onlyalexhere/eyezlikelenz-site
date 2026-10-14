@@ -5,7 +5,7 @@ test.describe('home page', () => {
   test('loads with the right title and hero', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/EyezLikeLenz/);
-    await expect(page.locator('h1')).toContainText('the moment');
+    await expect(page.locator('h1')).toContainText('London wedding');
   });
 
   test('nav links point to the right sections and pages', async ({ page }) => {
@@ -14,6 +14,7 @@ test.describe('home page', () => {
     await expect(page.locator('nav a[href="/terms/"]')).toBeVisible();
     await expect(page.locator('nav a[href="/pricing/"]')).toBeVisible();
     await expect(page.locator('nav a[href="/pricing/#payment"]')).toBeVisible();
+    await expect(page.locator('nav a[href="/about/"]')).toBeVisible();
     await expect(page.locator('nav a[href="#contact"]')).toBeVisible();
   });
 

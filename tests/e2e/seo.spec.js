@@ -2,10 +2,29 @@ const { test, expect } = require('../helpers/browser-test');
 
 const PAGES = [
   { url: '/', canonical: 'https://eyezlikelenz.com/' },
+  { url: '/about/', canonical: 'https://eyezlikelenz.com/about/' },
   { url: '/pricing/', canonical: 'https://eyezlikelenz.com/pricing/' },
   { url: '/portfolio/', canonical: 'https://eyezlikelenz.com/portfolio/' },
   { url: '/terms/', canonical: 'https://eyezlikelenz.com/terms/' }
 ];
+
+test.describe('search relevance', () => {
+  test('every indexable page has one clear primary heading', async ({ page }) => {
+    for (const { url } of PAGES) {
+      await page.goto(url);
+      await expect(page.locator('h1'), `${url} should have one H1`).toHaveCount(1);
+      await expect(page.locator('h1')).not.toHaveText('');
+    }
+  });
+
+  test('core pages identify the London photography service in title and copy', async ({ page }) => {
+    for (const url of ['/', '/about/', '/pricing/', '/portfolio/']) {
+      await page.goto(url);
+      expect(await page.title(), `${url} title should identify London or the photographer`).toMatch(/London|Alex Oyekola/i);
+      expect(await page.locator('body').innerText(), `${url} should visibly identify the location`).toMatch(/London/i);
+    }
+  });
+});
 
 test.describe('social share previews', () => {
   for (const { url, canonical } of PAGES) {

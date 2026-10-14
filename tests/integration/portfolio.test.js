@@ -15,9 +15,9 @@ function renderPortfolioSection() {
 }
 
 const TEST_IMAGES = [
-  { thumb: '/portfolio/images/thumbs/photo-01.jpg', full: '/portfolio/images/large/photo-01.jpg' },
-  { thumb: '/portfolio/images/thumbs/photo-02.jpg', full: '/portfolio/images/large/photo-02.jpg' },
-  { thumb: '/portfolio/images/thumbs/photo-03.jpg', full: '/portfolio/images/large/photo-03.jpg' }
+  { thumb: '/portfolio/images/thumbs/photo-01.jpg', full: '/portfolio/images/large/photo-01.jpg', alt: 'DJ performing at a club night' },
+  { thumb: '/portfolio/images/thumbs/photo-02.jpg', full: '/portfolio/images/large/photo-02.jpg', alt: 'Guest enjoying a party' },
+  { thumb: '/portfolio/images/thumbs/photo-03.jpg', full: '/portfolio/images/large/photo-03.jpg', alt: 'Neon sign inside a venue' }
 ];
 
 describe('portfolio grid + lightbox', () => {
@@ -36,6 +36,7 @@ describe('portfolio grid + lightbox', () => {
       expect(img.src).toContain('photo-02.jpg');
       expect(img.alt.trim().length).toBeGreaterThan(0);
       expect(img.alt).not.toBe('');
+      expect(img.alt).toContain('Guest enjoying a party');
     });
 
     it('keeps the empty-state message hidden', () => {
