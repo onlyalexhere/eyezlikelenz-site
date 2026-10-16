@@ -27,14 +27,14 @@ test.describe('mobile nav menu', () => {
     }
   });
 
-  test('closes and scrolls when a same-page link is tapped', async ({ page }) => {
+  test('closes and opens the dedicated contact page', async ({ page }) => {
     await page.goto('/');
     await page.locator('#nav-toggle').tap();
-    await page.locator('#nav-links a[href="#contact"]').tap();
+    await page.locator('#nav-links a[href="/contact/"]').tap();
 
     await expect(page.locator('#nav-links')).toBeHidden();
-    await expect(page).toHaveURL(/#contact$/);
-    await expect(page.locator('#contact')).toBeInViewport();
+    await expect(page).toHaveURL(/\/contact\/$/);
+    await expect(page.locator('.contact-page')).toBeInViewport();
   });
 
   test('navigates away when a cross-page link is tapped', async ({ page }) => {
@@ -66,15 +66,15 @@ test.describe('mobile nav menu', () => {
     await expect(page.locator('#nav-links')).toBeHidden();
   });
 
-  test('works the same way on the portfolio and terms pages', async ({ page }) => {
+  test('works the same way on portfolio, stories and service pages', async ({ page }) => {
     await page.goto('/portfolio/');
     await page.locator('#nav-toggle').tap();
     await expect(page.locator('#nav-links a.active')).toHaveText('Portfolio');
-    await expect(page.locator('#nav-links a[href="/terms/"]')).toBeVisible();
+    await expect(page.locator('#nav-links a[href="/stories/"]')).toBeVisible();
 
-    await page.goto('/terms/');
+    await page.goto('/stories/');
     await page.locator('#nav-toggle').tap();
-    await expect(page.locator('#nav-links a.active')).toHaveText('Terms');
+    await expect(page.locator('#nav-links a[href="/stories/"]')).toBeVisible();
     await expect(page.locator('#nav-links a[href="/portfolio/"]')).toBeVisible();
 
     await page.goto('/services/');

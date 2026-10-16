@@ -17,3 +17,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://eyezlikelenz.com/sitemap.xml
+Sitemap: https://eyezlikelenz.com/image-sitemap.xml

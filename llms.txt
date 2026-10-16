@@ -15,9 +15,15 @@ Important facts:
 
 - [Home](https://eyezlikelenz.com/): Business overview, approach, testimonials and contact information.
 - [Photography services](https://eyezlikelenz.com/services/): Wedding, event, portrait and brand coverage, prices, delivery times and booking answers.
+- [Wedding photography](https://eyezlikelenz.com/services/weddings/): Documentary-led London wedding coverage, inclusions, delivery and booking answers.
+- [Event photography](https://eyezlikelenz.com/services/events/): London celebrations, parties, launches, package prices and booking information.
+- [Nightlife photography](https://eyezlikelenz.com/services/nightlife/): London club night, DJ, promoter and venue photography.
+- [Portrait photography](https://eyezlikelenz.com/services/portraits/): London studio and location portraits and headshots.
+- [Photography stories](https://eyezlikelenz.com/stories/): Four completed shoots with project context and selected photographs.
 - [Portfolio](https://eyezlikelenz.com/portfolio/): The complete unified EyezLikeLenz photography portfolio.
 - [Pricing and booking](https://eyezlikelenz.com/pricing/): Current standard session prices and live calendar links.
 - [About Alex Oyekola](https://eyezlikelenz.com/about/): Photographer identity, location and working approach.
+- [Contact](https://eyezlikelenz.com/contact/): Wedding, bespoke and standard-session enquiry routes.
 - [Terms](https://eyezlikelenz.com/terms/): Booking, cancellation, delivery, licensing, travel and privacy terms.
 
 ## Contact

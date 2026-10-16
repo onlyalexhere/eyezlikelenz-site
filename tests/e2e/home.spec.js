@@ -11,11 +11,11 @@ test.describe('home page', () => {
   test('nav links point to the right sections and pages', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('nav a[href="/portfolio/"]')).toBeVisible();
-    await expect(page.locator('nav a[href="/terms/"]')).toBeVisible();
+    await expect(page.locator('nav a[href="/stories/"]')).toBeVisible();
     await expect(page.locator('nav a[href="/pricing/"]')).toBeVisible();
     await expect(page.locator('nav a[href="/pricing/#payment"]')).toBeVisible();
     await expect(page.locator('nav a[href="/about/"]')).toBeVisible();
-    await expect(page.locator('nav a[href="#contact"]')).toBeVisible();
+    await expect(page.locator('nav a[href="/contact/"]')).toBeVisible();
   });
 
   test('standard session links lead to pricing and booking', async ({ page }) => {

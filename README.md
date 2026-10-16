@@ -1,6 +1,6 @@
 # EyezLikeLenz Photography
 
-Site for Alex Oyekola Photography: home (about, services, contact), plus pricing & booking, portfolio, and terms pages. Static HTML, no build step, no framework, no runtime dependencies beyond Google Fonts. A Node-based test suite (dev-only) covers the business-critical logic — see [Testing](#testing).
+Site for Alex Oyekola Photography: home, services, completed-shoot stories, pricing and booking, portfolio, contact, about, and terms. Static HTML, no framework, and no runtime dependencies beyond Google Fonts. A Node-based test suite (dev-only) covers the business-critical logic — see [Testing](#testing).
 
 ## Structure
 
@@ -9,6 +9,9 @@ eyezlikelenz-site/
 ├── index.html              Home: hero, about, services, contact
 ├── pricing/index.html      Pricing tiers + booking and payment
 ├── portfolio/index.html    Photo grid + lightbox
+├── services/               Service guide + four search landing pages
+├── stories/                Four completed-shoot stories + index
+├── contact/index.html      Bespoke and standard booking routes
 ├── terms/index.html        Terms and conditions
 ├── css/
 │   └── styles.css          All styling (sectioned by component)
@@ -22,7 +25,9 @@ eyezlikelenz-site/
 │   ├── testimonials.js     Renders only approved quotes
 │   └── reveal.js           Scroll-triggered fade-ins
 ├── robots.txt              Crawl policy, points at the sitemap
-├── sitemap.xml             All four pages
+├── sitemap.xml             All indexable pages
+├── image-sitemap.xml       All 55 portfolio photographs
+├── scripts/                Page and optimized story-image generators
 ├── tests/                  Unit, integration, and e2e tests (see below)
 ├── README.md
 └── .gitignore
@@ -42,9 +47,21 @@ npx serve .
 
 Then visit http://localhost:8000.
 
+## Generating search pages
+
+The portfolio remains one collection. The service and story pages explain the
+work in enough detail for customers and search systems without splitting the
+gallery. After editing their source data in `scripts/generate_growth_pages.py`,
+rebuild the pages, static portfolio HTML, and sitemaps:
+
+```sh
+scripts/build-story-images.sh
+python3 scripts/generate_growth_pages.py
+```
+
 ## Deploying
 
-Push the folder to any static host: GitHub Pages, Netlify, Vercel, Cloudflare Pages, S3, or a shared web host. No build step. Just upload all four files (and the folders) and point the host at `index.html`.
+Push the folder to any static host: GitHub Pages, Netlify, Vercel, Cloudflare Pages, S3, or a shared web host. No runtime build step is required; point the host at `index.html`.
 
 ## Editing the most common things
 

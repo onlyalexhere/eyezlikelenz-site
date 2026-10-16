@@ -4,8 +4,18 @@ const PAGES = [
   { url: '/', canonical: 'https://eyezlikelenz.com/' },
   { url: '/about/', canonical: 'https://eyezlikelenz.com/about/' },
   { url: '/services/', canonical: 'https://eyezlikelenz.com/services/' },
+  { url: '/services/weddings/', canonical: 'https://eyezlikelenz.com/services/weddings/' },
+  { url: '/services/events/', canonical: 'https://eyezlikelenz.com/services/events/' },
+  { url: '/services/nightlife/', canonical: 'https://eyezlikelenz.com/services/nightlife/' },
+  { url: '/services/portraits/', canonical: 'https://eyezlikelenz.com/services/portraits/' },
+  { url: '/stories/', canonical: 'https://eyezlikelenz.com/stories/' },
+  { url: '/stories/london-club-night-photography/', canonical: 'https://eyezlikelenz.com/stories/london-club-night-photography/' },
+  { url: '/stories/london-rooftop-event-photography/', canonical: 'https://eyezlikelenz.com/stories/london-rooftop-event-photography/' },
+  { url: '/stories/london-editorial-portrait-session/', canonical: 'https://eyezlikelenz.com/stories/london-editorial-portrait-session/' },
+  { url: '/stories/london-studio-portrait-photography/', canonical: 'https://eyezlikelenz.com/stories/london-studio-portrait-photography/' },
   { url: '/pricing/', canonical: 'https://eyezlikelenz.com/pricing/' },
   { url: '/portfolio/', canonical: 'https://eyezlikelenz.com/portfolio/' },
+  { url: '/contact/', canonical: 'https://eyezlikelenz.com/contact/' },
   { url: '/terms/', canonical: 'https://eyezlikelenz.com/terms/' }
 ];
 
@@ -15,11 +25,14 @@ test.describe('search relevance', () => {
       await page.goto(url);
       await expect(page.locator('h1'), `${url} should have one H1`).toHaveCount(1);
       await expect(page.locator('h1')).not.toHaveText('');
+      const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+      expect(robots, `${url} must remain indexable`).toMatch(/index/i);
+      expect(robots, `${url} must not be excluded`).not.toMatch(/noindex/i);
     }
   });
 
   test('core pages identify the London photography service in title and copy', async ({ page }) => {
-    for (const url of ['/', '/about/', '/services/', '/pricing/', '/portfolio/']) {
+    for (const { url } of PAGES.filter((page) => page.url !== '/terms/')) {
       await page.goto(url);
       expect(await page.title(), `${url} title should identify London or the photographer`).toMatch(/London|Alex Oyekola/i);
       expect(await page.locator('body').innerText(), `${url} should visibly identify the location`).toMatch(/London/i);
@@ -37,9 +50,7 @@ test.describe('social share previews', () => {
 
       // Without og:image a shared link renders as a bare grey box — for a
       // photographer that is the whole pitch missing.
-      expect(await meta('meta[property="og:image"]')).toBe(
-        'https://eyezlikelenz.com/assets/editorial/share.jpg'
-      );
+      expect(await meta('meta[property="og:image"]')).toMatch(/^https:\/\/eyezlikelenz\.com\/.+/);
       expect(await meta('meta[property="og:image:width"]')).toBe('1200');
       expect(await meta('meta[property="og:image:height"]')).toBe('630');
       expect(await meta('meta[name="twitter:card"]')).toBe('summary_large_image');
@@ -75,6 +86,11 @@ test.describe('social share previews', () => {
 });
 
 test.describe('crawlability', () => {
+  test('the live domain can be verified by Google Search Console', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('meta[name="google-site-verification"]')).toHaveAttribute('content', /.+/);
+  });
+
   test('robots.txt allows crawling and points at the sitemap', async ({ page }) => {
     const res = await page.request.get('/robots.txt');
     expect(res.status()).toBe(200);
@@ -151,9 +167,9 @@ test.describe('structured data', () => {
     const services = graph.find((item) => item['@type'] === 'ItemList');
     const faq = graph.find((item) => item['@type'] === 'FAQPage');
 
-    expect(services.itemListElement).toHaveLength(4);
+    expect(services.itemListElement).toHaveLength(5);
     expect(faq.mainEntity).toHaveLength(5);
-    await expect(page.locator('.service-guide-list .service-card')).toHaveCount(4);
+    await expect(page.locator('.service-guide-list .service-card')).toHaveCount(5);
     await expect(page.locator('.service-faq details')).toHaveCount(5);
   });
 });

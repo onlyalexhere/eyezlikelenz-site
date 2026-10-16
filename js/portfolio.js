@@ -48,20 +48,26 @@
   function next(dir) { open(current + dir); }
 
   images.forEach(function (item, i) {
-    var fig = document.createElement('button');
-    fig.className = 'portfolio-item';
-    fig.setAttribute('aria-label', 'View ' + altOf(item, i));
-
-    var img = document.createElement('img');
-    img.loading = 'lazy';
-    img.alt = altOf(item, i);
-    img.src = thumbOf(item);
+    var fig = grid.querySelector('[data-portfolio-index="' + i + '"]');
+    var img;
+    if (fig) {
+      img = fig.querySelector('img');
+    } else {
+      fig = document.createElement('button');
+      fig.className = 'portfolio-item';
+      fig.setAttribute('data-portfolio-index', i);
+      fig.setAttribute('aria-label', 'View ' + altOf(item, i));
+      img = document.createElement('img');
+      img.loading = 'lazy';
+      img.alt = altOf(item, i);
+      img.src = thumbOf(item);
+      fig.appendChild(img);
+      grid.appendChild(fig);
+    }
     img.onload = function () { fig.classList.add('loaded'); };
     img.onerror = function () { fig.style.display = 'none'; };
-
-    fig.appendChild(img);
+    if (img.complete && img.naturalWidth) fig.classList.add('loaded');
     fig.addEventListener('click', function () { open(i); });
-    grid.appendChild(fig);
   });
 
   // Lightbox controls
