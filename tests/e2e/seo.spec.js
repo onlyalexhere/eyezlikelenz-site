@@ -3,6 +3,7 @@ const { test, expect } = require('../helpers/browser-test');
 const PAGES = [
   { url: '/', canonical: 'https://eyezlikelenz.com/' },
   { url: '/about/', canonical: 'https://eyezlikelenz.com/about/' },
+  { url: '/services/', canonical: 'https://eyezlikelenz.com/services/' },
   { url: '/pricing/', canonical: 'https://eyezlikelenz.com/pricing/' },
   { url: '/portfolio/', canonical: 'https://eyezlikelenz.com/portfolio/' },
   { url: '/terms/', canonical: 'https://eyezlikelenz.com/terms/' }
@@ -18,7 +19,7 @@ test.describe('search relevance', () => {
   });
 
   test('core pages identify the London photography service in title and copy', async ({ page }) => {
-    for (const url of ['/', '/about/', '/pricing/', '/portfolio/']) {
+    for (const url of ['/', '/about/', '/services/', '/pricing/', '/portfolio/']) {
       await page.goto(url);
       expect(await page.title(), `${url} title should identify London or the photographer`).toMatch(/London|Alex Oyekola/i);
       expect(await page.locator('body').innerText(), `${url} should visibly identify the location`).toMatch(/London/i);
@@ -81,6 +82,19 @@ test.describe('crawlability', () => {
     expect(body).toMatch(/User-agent:\s*\*/i);
     expect(body).toMatch(/Sitemap:\s*https:\/\/eyezlikelenz\.com\/sitemap\.xml/i);
     expect(body).not.toMatch(/^\s*Disallow:\s*\/\s*$/im);
+    for (const bot of ['OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'PerplexityBot', 'Google-Extended']) {
+      expect(body, `${bot} should be explicitly allowed`).toContain(`User-agent: ${bot}`);
+    }
+  });
+
+  test('llms.txt gives AI tools a factual map of the public site', async ({ page }) => {
+    const res = await page.request.get('/llms.txt');
+    expect(res.status()).toBe(200);
+    const body = await res.text();
+    expect(body).toContain('# EyezLikeLenz');
+    expect(body).toContain('https://eyezlikelenz.com/services/');
+    expect(body).toContain('https://eyezlikelenz.com/portfolio/');
+    expect(body).toMatch(/Alexander.*Alex.*Oyekola/i);
   });
 
   test('sitemap is valid and lists every page', async ({ page }) => {
@@ -127,5 +141,19 @@ test.describe('structured data', () => {
       els.map((el) => (el.textContent.match(/[\d,]+/) || [''])[0])
     );
     expect(offers.map((o) => o.price).sort()).toEqual(onPage.sort());
+  });
+
+  test('services page exposes matching service and FAQ data', async ({ page }) => {
+    await page.goto('/services/');
+    const raw = await page.locator('script[type="application/ld+json"]').textContent();
+    const data = JSON.parse(raw);
+    const graph = data['@graph'];
+    const services = graph.find((item) => item['@type'] === 'ItemList');
+    const faq = graph.find((item) => item['@type'] === 'FAQPage');
+
+    expect(services.itemListElement).toHaveLength(4);
+    expect(faq.mainEntity).toHaveLength(5);
+    await expect(page.locator('.service-guide-list .service-card')).toHaveCount(4);
+    await expect(page.locator('.service-faq details')).toHaveCount(5);
   });
 });

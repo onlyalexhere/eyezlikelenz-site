@@ -76,6 +76,10 @@ test.describe('mobile nav menu', () => {
     await page.locator('#nav-toggle').tap();
     await expect(page.locator('#nav-links a.active')).toHaveText('Terms');
     await expect(page.locator('#nav-links a[href="/portfolio/"]')).toBeVisible();
+
+    await page.goto('/services/');
+    await page.locator('#nav-toggle').tap();
+    await expect(page.locator('#nav-links a.active')).toHaveText('Services');
   });
 
   test('the burger disappears again above the 900px breakpoint', async ({ page }) => {
