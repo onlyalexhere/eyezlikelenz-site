@@ -99,4 +99,24 @@ test.describe('enquiry conversion', () => {
     await expect(page.locator('.contact-routes a[href="/services/"]')).toBeVisible();
     await expect(page.locator('body')).toContainText(/within two working days/i);
   });
+
+  test('public pages describe a service area without claiming a customer-facing studio', async ({ page }) => {
+    for (const path of ['/', '/services/', '/services/portraits/', '/contact/', '/llms.txt']) {
+      const response = await page.request.get(path);
+      expect(response.status()).toBe(200);
+      const content = await response.text();
+      expect(content).not.toContain('OMJ Studios');
+      expect(content).not.toContain('based at OMJ');
+    }
+
+    await page.goto('/services/');
+    await expect(page.locator('body')).toContainText(/service-area photography business/i);
+    await expect(page.locator('body')).toContainText(/client venues, on location or in hired studios/i);
+
+    await page.goto('/');
+    const business = await page.locator('script[type="application/ld+json"]').evaluate((node) => JSON.parse(node.textContent));
+    expect(business.address.addressLocality).toBe('London');
+    expect(business.address).not.toHaveProperty('streetAddress');
+    expect(business.address).not.toHaveProperty('postalCode');
+  });
 });
